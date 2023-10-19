@@ -11,9 +11,9 @@
     include_once('View/Templates/header.php')
   ?>
   <div class="content-primary" id="content"> 
-    <h2>Home</h2>
+    <h2>Home / draft :{}</h2>
     <nav id="display_column">
-      <a href="View/research.php">RESEARCH</a>
+      <a href="View/research.php">RESEARCH !!</a>
       <button id="btn-mode">LIGHT THEME</button> 
       <a href="View/sign_in.php" class="link-connexion">SIGN IN</a>
       <a href="View/log_in.php" class="link-connexion">LOG IN</a>
