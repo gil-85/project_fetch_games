@@ -1,0 +1,40 @@
+.d-screens-movies{
+  margin: 1em 0;
+  background-color: #00f;
+}
+
+.d-screens-movies_item{
+  margin-top: 2em;
+  background-color: #f00;
+}
+
+
+.content-secondary{
+  text-align: center;
+  width: 90%;
+  margin: 1em auto;
+  padding: 1em;
+  border: .1em solid var(--bkg-clr_00);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+
+.d-serie-dlc_item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 8em;
+  aspect-ratio: 3/2;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+  border: .1em solid var(--txt-clr); 
+}
+
+.d-serie-dlc_item> p{
+ background-color: var(--bkg-btn);
+}
