@@ -10,28 +10,24 @@ const btnMoreFilters = document.querySelector('#btn-more_filters')
 const name = document.querySelector('#name');
 
 //////      PLATFORMS     ////////
-const selectPlatforms = document.querySelector('#d-select_platforms');
 const platformsSelected = document.querySelector('#d-platforms_selected');
 const platformsList = document.querySelector('#d-platforms_list');
 const btnLoadMorePlats = document.querySelector(`#btn-load_more_plats`); 
 const platsSelectedCount = document.querySelector('#platforms>span');
 
 //////      GENRES     ////////
-const selectGenres = document.querySelector('#d-select_genres');
 const genresSelected = document.querySelector('#d-genres_selected');
 const genresList = document.querySelector('#d-genres_list');
 const btnLoadMoreGenres = document.querySelector(`#btn-load_more_genres`); 
 const genresSelectedCount = document.querySelector('#genres>span');
 
 //////      TAGS     ////////
-const selectTags = document.querySelector('#d-select_tags');
 const tagsSelected = document.querySelector('#d-tags_selected');
 const tagsList = document.querySelector('#d-tags_list');
 const tag = document.querySelector('#tag');
 const tagsSelectedCount = document.querySelector('#tags>span');
 
 //////     RELEASES DATES     ////////
-const selectReleases = document.querySelector('#d-select_releases')
 const releasesSelected = document.querySelector('#d-releases_selected');
 const releasesList = document.querySelector('#d-releases_list');
 const releaseStart = document.querySelector('#release_start');
@@ -39,14 +35,12 @@ const releaseEnd = document.querySelector('#release_end');
 const releasesSelectedOk = document.querySelector('#releases>span');
 
 //////      CREATORS    ////////
-const selectCreators = document.querySelector('#d-select_creators');
 const creatorsSelected = document.querySelector('#d-creators_selected');
 const creatorsList = document.querySelector('#d-creators_list');
 const creator = document.querySelector('#creator');
 const creatorsSelectedCount = document.querySelector('#creators>span');
 
 //////     UPDATES     ////////
-const selectUpdates = document.querySelector('#d-select_updates')
 const updateSelected = document.querySelector('#d-releases_selected');
 const updateList = document.querySelector('#d-update_list');
 const updateStart = document.querySelector('#update_start');
@@ -54,14 +48,12 @@ const updateEnd = document.querySelector('#update_end');
 const updatesSelectedOk = document.querySelector('#updates>span');
 
 //////      PUBLISHERS    ////////
-const selectPublishers = document.querySelector('#d-select_publishers');
 const publishersSelected = document.querySelector('#d-publishers_selected');
 const publishersList = document.querySelector('#d-publishers_list');
 const publisher = document.querySelector('#publisher');
 const publishersSelectedCount = document.querySelector('#publishers>span');
 
 //////      DEVELOPERS    ////////
-const selectDevelopers = document.querySelector('#d-select_developers');
 const developersSelected = document.querySelector('#d-developers_selected');
 const developersList = document.querySelector('#d-developers_list');
 const developer = document.querySelector('#developer');
@@ -92,7 +84,7 @@ let scrolling = false;
 document.querySelectorAll(`.open_research`).forEach(element => {
   element.addEventListener(`click`, e=>{
     let id = e.target.id;
-    if(e.target.classList.contains(`counter`)) id = e.target.parentNode.id; //// IF WE CLICK ON THE GREEN NUMBER OR SET, UNSET STRING ////
+    if(e.target.classList.contains(`counter`)) id = e.target.parentNode.id; //// IF THE CLICK IS ON THE GREEN NUMBER OR SET, UNSET STRING ////
     clearShown();
     document.querySelector(`#e_${id}_e`).classList.remove('ghost');
     document.querySelector(`#e_${id}_e`).classList.add('show_list');

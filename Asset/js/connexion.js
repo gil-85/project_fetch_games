@@ -2,7 +2,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   e.preventDefault();
   const errorMessage = document.querySelector(`#p-error_message`);
   const email = document.querySelector(`input[type=email]`).value;
-  const logname = document.querySelector(`#input-logname`).value;
+  const logname = document.querySelector(`input[type=text]`).value;
   
 
   if(isValidEmail(email)){
@@ -53,4 +53,25 @@ function connected(email){
   sessionStorage.setItem(`user_email`, email);
   window.location = `../index.php`;
 }
+
+
+if ( ! currentURL.includes(`log_in`)){
+  ////  DISPLAY THE AVATAR CREATION FIELDS ////
+  
+  document.querySelector(`button[type="button"]`).addEventListener(`click`, e=>{
+
+    let id = e.target.id;
+    if(e.target.classList.contains(`avatarSet`)) id = e.target.parentNode.id; //// IF THE CLICK IS ON THE GREEN CHARACTERES ////
+    
+    document.querySelector(`#e_${id}_e`).classList.remove('ghost');
+    document.querySelector(`#e_${id}_e`).classList.add('show_list');
+  });
+  
+  ////  HIDE THE AVATAR CREATION FIELDS ////
+  document.querySelector(`#e_avatars`).addEventListener(`click`, e=>{
+    document.querySelector(`#${e.target.id}_e`).classList.remove('show_list');
+    document.querySelector(`#${e.target.id}_e`).classList.add('ghost');
+  });
+}
+
 //alert('Connexion ok');

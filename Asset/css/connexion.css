@@ -5,3 +5,58 @@
 
   /*text-shadow: -1px -1px 4px #000, -1px 1px 4px #000, 1px -1px 4px #000, 1px 1px 4px #000;*/
 }
+
+
+form> button {
+  display: flex;
+  justify-content: space-between;
+}
+
+form> button> span {
+  padding: 0 2em;
+  color: var(--search_count-clr);
+}
+
+.show_list {
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  position: fixed;
+  inset: 0px;
+  top: 5em;
+  height: 70dvh;
+  background-color: var(--bkg-btn);
+  border: .1em dashed #f000;
+}
+.d-grid_1 {
+  grid-row: 1/10;
+  grid-column: 1 / 5;
+  border: .0em solid red;
+
+  border-right: .1em solid var(--txt-clr);
+  overflow-y: scroll;
+}
+
+.d-grid_2 {
+  grid-row: 1/10; 
+  grid-column: 5 / 11; 
+  border: .0em solid blue;
+
+  overflow-y: scroll;
+  position: relative; 
+}
+
+.d-grid_3 {
+  grid-row: 10 / 11;
+  grid-column: 1 / 11;
+ 
+  background-image: #0000;
+  border: .0em solid lime;
+}
+
+.d-grid_2> .d-grid_2_input{
+  height: 2em;  
+  display: flex;
+  border-bottom: .1em solid var(--txt-clr);
+  
+  background: #f000;
+}

@@ -18,9 +18,12 @@
     <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
       <input type="email" placeholder="EMAIL" autocomplete="email" required>
-      <input type="text" placeholder="LOG NAME" id="input-logname" autocomplete="username" maxlength="16" required>
+      <input type="text" placeholder="LOG NAME" autocomplete="username" maxlength="16" required>
       <input type="password" placeholder="PASSWORD" required>
       <input type="password" placeholder="CONFIRM PASSWORD" required>
+      <button type="button" id="avatars">AVATAR<span class="avatarSet">( -_- )</span></button>
+
+      
       <input type="submit" value="ENTER">
     </form>
     <div class="a-btn above-footer">
@@ -29,6 +32,23 @@
     </div>
     <p id="p-error_message"></p> 
   </div>
+
+      <!-- ////     AVATARS    //// -->
+      <div class="ghost" id="e_avatars_e">
+      
+      <div class="d-grid_1" id="d-avatars_selected"></div>
+      
+      <div class="d-grid_2" id="d-avatars_list"></div>
+      
+      <div class="d-grid_3">
+        <div class="a-btn">
+          <button id="e_avatars">[ O ]</button>
+        </div>
+      </div>
+      
+    </div>
+
+
   <!-- footer -->
   <?php
     include_once('Templates/footer.php')
