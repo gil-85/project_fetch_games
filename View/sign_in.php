@@ -16,9 +16,10 @@
     <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
       <input type="email" placeholder="EMAIL" autocomplete="email" required>
+      <input type="text" placeholder="LOG NAME" autocomplete="" min="4" max="16" required>
       <input type="password" placeholder="PASSWORD" autocomplete="" required>
       <input type="password" placeholder="CONFIRM PASSWORD"  autocomplete="" required>
-        <input type="submit" value="ENTER">
+      <input type="submit" value="ENTER">
     </form>
     <div class="a-btn above-footer">
       <p>Already an account : <a href="log_in.php">Log in</a>

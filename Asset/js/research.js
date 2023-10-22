@@ -541,7 +541,7 @@ document.querySelector('button[type="submit"]>span').addEventListener(`click`, e
 form.addEventListener(`submit`, e =>{
   e.preventDefault();
   if(name.value !== '')
-    location.href = `list.html?title=Found&search=${name.value}&search_exact=true`; 
+    location.href = `list.php?title=Found&search=${name.value}&search_exact=true`; 
 //search_precise
 //search_exact
   else{

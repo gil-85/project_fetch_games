@@ -35,7 +35,7 @@ header.innerHTML +=
 `
 <span id="user_email">Not connected </span>
 <br> 
-<span style="font-size: .6em; color:cyan">user0@gmail.com</span>
+<span style="font-size: .6em; color:cyan;">user0@gmail.com</span>
 `;
 
 //// KEEP THE THEME CHOOSED ON EVERY PAGE USING THE LOCALSTORAGE ////
