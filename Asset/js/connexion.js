@@ -89,6 +89,7 @@ if ( ! currentURL.includes(`log_in`)){
 
 
   const elementAvatar = document.querySelector(`#d-element_avatar`);
+  const avatarSet = document.querySelector('#avatars>span');
   const side = document.querySelector(`#side`);
   const eyes = document.querySelector(`#eyes`);
   const mouth = document.querySelector(`#mouth`);
@@ -207,6 +208,11 @@ if ( ! currentURL.includes(`log_in`)){
 
         default : alert(`default`); break;
       }
+      avatarSet.textContent = `
+      ${elementAvatar.childNodes[1].textContent}
+      ${elementAvatar.childNodes[3].textContent}${elementAvatar.childNodes[5].textContent}${elementAvatar.childNodes[7].textContent}
+      ${elementAvatar.childNodes[9].textContent}
+      `;
     })
   });
 }
