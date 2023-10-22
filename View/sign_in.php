@@ -36,9 +36,47 @@
       <!-- ////     AVATARS    //// -->
       <div class="ghost" id="e_avatars_e">
       
-      <div class="d-grid_1" id="d-avatars_selected"></div>
+      <div class="d-grid_1" id="d-avatar_selected">
+        <div id="d-element_avatar">
+        
+          <span>(</span><span>-</span><span>_</span><span>-</span><span>)</span>
+           
+          
+         
+        </div>
+      </div>
       
-      <div class="d-grid_2" id="d-avatars_list"></div>
+      <div class="d-grid_2" id="d-avatars_list">
+      <div class="d-grid_2_input-hand">
+
+        <div class="d-d-input_avatar">
+
+          <div class="d-input_avatar">
+            <button>&lt;</button>
+            <p>( &emsp;)</p>
+            <button>&gt;</button>
+          </div>
+          <div class="d-input_avatar">
+            <button>&lt;</button>
+            <p>- &nbsp;-</p>
+            <button>&gt;</button>
+          </div>
+          <div class="d-input_avatar">
+            <button>&lt;</button>
+            <p>_</p>
+            <button>&gt;</button>
+          </div>
+          <div class="d-input_avatar">
+            <button>&lt;</button>
+            <p>Bkg-clr</p>
+            <button>&gt;</button>
+          </div>
+
+        </div>
+
+
+
+      </div>
       
       <div class="d-grid_3">
         <div class="a-btn">

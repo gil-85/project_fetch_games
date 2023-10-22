@@ -94,7 +94,7 @@
    <!-- ////     RELEASE DATE      //// -->
     <div class="ghost" id="e_releases_e">
       <div class="d-grid_1" id="d-releases_selected">
-        <div id="d-element_releases"></div>
+        <div class="d-element_date" id="d-element_releases"></div>
       </div>
       <div class="d-grid_2" id="d-releases_list">
         <div class="d-grid_2_input-hand">
@@ -150,13 +150,15 @@
       <!-- ////     UPDATES      //// -->
     <div class="ghost" id="e_updates_e">
       <div class="d-grid_1" id="d-updates_selected">
-        <div id="d-element_updates"></div>
+        <div class="d-element_date" id="d-element_updates"></div>
       </div>
       <div class="d-grid_2" id="d-updates_list">
         <div class="d-grid_2_input-hand">
           <div class="ninja" id="d-updates_incorrect">
             <p>Dates incorrect</p>
           </div>
+
+
           <div class="d-d-input_date">
             <div class="d-input_date">
               <label for="update_start">Start</label>
@@ -167,6 +169,8 @@
               <input type="date" id="update_end">
             </div>
           </div>
+
+
           <div class="a-btn">
             <button type="button" id="btn-clear_updates">Clear</button>
           </div>

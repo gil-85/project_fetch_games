@@ -6,7 +6,7 @@
   /*text-shadow: -1px -1px 4px #000, -1px 1px 4px #000, 1px -1px 4px #000, 1px 1px 4px #000;*/
 }
 
-
+/* SAME AS RESEARCH.CSS */
 form> button {
   display: flex;
   justify-content: space-between;
@@ -53,10 +53,75 @@ form> button> span {
   border: .0em solid lime;
 }
 
-.d-grid_2> .d-grid_2_input{
-  height: 2em;  
+ .d-grid_2> .d-grid_2_input-hand{
+  height: 50%;
+  margin: 25% 0;
   display: flex;
-  border-bottom: .1em solid var(--txt-clr);
-  
-  background: #f000;
+  flex-direction: column;
+  justify-content: center;
 }
+ 
+/* SAME AS RESEARCH.CSS */
+
+#d-element_avatar{
+
+  height: 25dvw;
+  border-bottom: .1em solid var(--txt-clr);
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  
+  gap: 1em;
+}
+
+#d-element_avatar>span{
+  font-size: 2.8rem;
+ /*  color: var(--search_count-clr); */
+}
+
+
+
+.d-d-input_avatar{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+
+  padding: .4em;
+  border: .2em solid red;  
+  border-bottom: .1em solid var(--txt-clr);
+}
+
+
+.d-input_avatar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: 4em;
+
+  margin: .4em 0;
+  border: .1em solid blue; 
+}
+
+.d-input_avatar>button{
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  height: 100%;
+  padding: 0 .8em;
+  color: var(--txt-clr);
+  background-color: var(--bkg-clr_00);
+}
+
+.d-input_avatar> input{
+  width: 100%;
+}
+
+
+
+
