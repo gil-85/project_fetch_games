@@ -72,6 +72,143 @@ if ( ! currentURL.includes(`log_in`)){
     document.querySelector(`#${e.target.id}_e`).classList.remove('show_list');
     document.querySelector(`#${e.target.id}_e`).classList.add('ghost');
   });
+
+
+//// OPTIONS FOR THE AVATAR ////
+  const strSides = `() [] {}`;
+  const aSides = strSides.split(' ');
+
+  const strRightEyes = `- o T $ @ >`;
+  const aRightEyes = strRightEyes.split(' ');
+
+  const strLeftEyes = `- o T $ @ <`;
+  const aLeftEyes = strLeftEyes.split(' ');
+
+  const strMouth = `_ . __`;
+  const aMouth = strMouth.split(' ');
+
+
+  const elementAvatar = document.querySelector(`#d-element_avatar`);
+  const side = document.querySelector(`#side`);
+  const eyes = document.querySelector(`#eyes`);
+  const mouth = document.querySelector(`#mouth`);
+  let newChar_1 = ``;
+  let newChar_2 = ``;
+
+  //// CHANGE ELEMEMTS OF THE AVATAR ELEMENT AND BETWEEN THE BUTTONS OF SELECTION ////
+  document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
+    btn.addEventListener(`click`, e=>{
+
+      switch(e.target.id){
+
+        case `prev_side`: 
+
+          for(let i = 0; i < aSides.length; i++){
+
+            if(side.textContent.charAt(0) === aSides[i][0])
+              if(i > 0){
+                newChar_1 = aSides[i - 1][0];
+                newChar_2 = aSides[i - 1][1];
+              }else{
+                newChar_1 = aSides[aSides.length - 1][0];
+                newChar_2 = aSides[aSides.length - 1][1];
+              }  
+          }
+        
+          elementAvatar.childNodes[1].textContent =  newChar_1;
+          elementAvatar.childNodes[9].textContent =  newChar_2;
+          side.textContent =  `${newChar_1} ${newChar_2}`;
+
+        break;
+        
+
+        case `next_side`:
+        
+          for(let i = 0; i < aSides.length; i++){
+          
+            if(side.textContent.charAt(0) === aSides[i][0])
+              if(i < aSides.length -1){
+                newChar_1 = aSides[i + 1][0];
+                newChar_2 = aSides[i + 1][1];
+              }else{
+                newChar_1 = aSides[0][0];
+                newChar_2 = aSides[0][1];
+              }  
+          }
+        
+          elementAvatar.childNodes[1].textContent =  newChar_1;
+          elementAvatar.childNodes[9].textContent =  newChar_2;
+          side.textContent =  `${newChar_1} ${newChar_2}`;
+
+        break;
+        
+        case `prev_eyes`: 
+
+          for(let i = 0; i < aRightEyes.length; i++){
+            if(eyes.textContent.charAt(0) === aRightEyes[i][0])
+              if(i > 0){
+                newChar_1 = aRightEyes[i - 1];
+                newChar_2 = aLeftEyes[i - 1];
+              }else{
+                newChar_1 = aRightEyes[aRightEyes.length - 1];
+                newChar_2 = aLeftEyes[aLeftEyes.length - 1];
+              }  
+          }
+
+          elementAvatar.childNodes[3].textContent =  newChar_1;
+          elementAvatar.childNodes[7].textContent =  newChar_2;
+          eyes.textContent = `${newChar_1} ${newChar_2}`;
+        
+        break; 
+
+        case `next_eyes`: 
+
+          for(let i = 0; i < aRightEyes.length; i++){
+            if(eyes.textContent.charAt(0) === aRightEyes[i][0])
+              if(i < aRightEyes.length - 1){
+                newChar_1 = aRightEyes[i + 1];
+                newChar_2 = aLeftEyes[i + 1];
+              }else{
+                newChar_1 = aRightEyes[0];
+                newChar_2 = aLeftEyes[0];
+              }  
+          }
+
+          elementAvatar.childNodes[3].textContent =  newChar_1;
+          elementAvatar.childNodes[7].textContent =  newChar_2;
+          eyes.textContent = `${newChar_1} ${newChar_2}`;
+        break; 
+
+        case `prev_mouth`: 
+
+          for(let i = 0; i < aMouth.length; i++){
+            if(mouth.textContent === aMouth[i])
+              if(i > 0) newChar_1 = aMouth[i - 1];
+              else newChar_1 = aMouth[aMouth.length - 1]; 
+          }
+
+          elementAvatar.childNodes[5].textContent =  newChar_1;
+          mouth.textContent = `${newChar_1}`;
+        
+        break; 
+
+        case `next_mouth`: 
+
+          for(let i = 0; i < aMouth.length; i++){
+            if(mouth.textContent === aMouth[i])
+              if(i < aMouth.length - 1) newChar_1 = aMouth[i + 1];
+              else newChar_1 = aMouth[0]; 
+          }
+
+          elementAvatar.childNodes[5].textContent =  newChar_1;
+          mouth.textContent = `${newChar_1}`;
+
+        break; 
+
+        default : alert(`default`); break;
+      }
+    })
+  });
 }
 
 //alert('Connexion ok');

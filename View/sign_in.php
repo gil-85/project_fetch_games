@@ -19,8 +19,8 @@
     <form action="../index.php" id="display_column">
       <input type="email" placeholder="EMAIL" autocomplete="email" required>
       <input type="text" placeholder="LOG NAME" autocomplete="username" maxlength="16" required>
-      <input type="password" placeholder="PASSWORD" required>
-      <input type="password" placeholder="CONFIRM PASSWORD" required>
+      <input type="password" placeholder="PASSWORD" autocomplete="new-password" required>
+      <input type="password" placeholder="CONFIRM PASSWORD" autocomplete="new-password" required>
       <button type="button" id="avatars">AVATAR<span class="avatarSet">( -_- )</span></button>
 
       
@@ -38,44 +38,42 @@
       
       <div class="d-grid_1" id="d-avatar_selected">
         <div id="d-element_avatar">
-        
-          <span>(</span><span>-</span><span>_</span><span>-</span><span>)</span>
-           
-          
-         
+          <div>(</div>
+          <div>-</div>
+          <div>_</div>
+          <div>-</div>
+          <div>)</div>
         </div>
       </div>
       
       <div class="d-grid_2" id="d-avatars_list">
-      <div class="d-grid_2_input-hand">
+        <div class="d-grid_2_input-hand">
 
-        <div class="d-d-input_avatar">
+          <div class="d-d-input_avatar">
 
-          <div class="d-input_avatar">
-            <button>&lt;</button>
-            <p>( &emsp;)</p>
-            <button>&gt;</button>
-          </div>
-          <div class="d-input_avatar">
-            <button>&lt;</button>
-            <p>- &nbsp;-</p>
-            <button>&gt;</button>
-          </div>
-          <div class="d-input_avatar">
-            <button>&lt;</button>
-            <p>_</p>
-            <button>&gt;</button>
-          </div>
-          <div class="d-input_avatar">
-            <button>&lt;</button>
-            <p>Bkg-clr</p>
-            <button>&gt;</button>
-          </div>
+            <div class="d-input_avatar">
+              <button id="prev_side">&lt;</button>
+              <span id="side">( )</span>
+              <button id="next_side">&gt;</button>
+            </div>
+            <div class="d-input_avatar">
+              <button id="prev_eyes">&lt;</button>
+              <span id="eyes">- -</span>
+              <button id="next_eyes">&gt;</button>
+            </div>
+            <div class="d-input_avatar">
+              <button id="prev_mouth">&lt;</button>
+              <span id="mouth">_</span>
+              <button id="next_mouth">&gt;</button>
+            </div>
+            <div class="d-input_avatar">
+              <button id="prev_bkg">&lt;</button>
+              <span id="bkg">Bkg-clr</span>
+              <button id="next_bkg">&gt;</button>
+            </div>
 
+          </div>
         </div>
-
-
-
       </div>
       
       <div class="d-grid_3">

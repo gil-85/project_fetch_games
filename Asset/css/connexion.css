@@ -64,7 +64,7 @@ form> button> span {
 /* SAME AS RESEARCH.CSS */
 
 #d-element_avatar{
-
+  font-size: 2.8rem;
   height: 25dvw;
   border-bottom: .1em solid var(--txt-clr);
 
@@ -73,13 +73,9 @@ form> button> span {
   justify-content: center;
   align-items: center;
   
-  gap: 1em;
+  border: .0em solid lime;
 }
 
-#d-element_avatar>span{
-  font-size: 2.8rem;
- /*  color: var(--search_count-clr); */
-}
 
 
 

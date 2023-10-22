@@ -174,8 +174,9 @@ label{
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  
-  gap: 1em;
+
+
+  border: .0em solid var(--txt-clr);
 }
 
 .d-element_date>p{
