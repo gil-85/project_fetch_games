@@ -1,6 +1,8 @@
   <!-- Header -->
   <?php
+    require_once("../Controller/dbh.php");
 
+    
     $mainCss = '../Asset/css/main.css';
     $connexionCss = '../Asset/css/connexion.css';
 
@@ -16,9 +18,9 @@
     <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
       <input type="email" placeholder="EMAIL" autocomplete="email" required>
-      <input type="text" placeholder="LOG NAME" autocomplete="" min="4" max="16" required>
-      <input type="password" placeholder="PASSWORD" autocomplete="" required>
-      <input type="password" placeholder="CONFIRM PASSWORD"  autocomplete="" required>
+      <input type="text" placeholder="LOG NAME" id="input-logname" autocomplete="username" maxlength="16" required>
+      <input type="password" placeholder="PASSWORD" required>
+      <input type="password" placeholder="CONFIRM PASSWORD" required>
       <input type="submit" value="ENTER">
     </form>
     <div class="a-btn above-footer">
