@@ -39,9 +39,11 @@
       <div class="d-grid_1" id="d-avatar_selected">
         <div id="d-element_avatar">
           <div>(</div>
+          <div>&nbsp;</div>
           <div>-</div>
           <div>_</div>
           <div>-</div>
+          <div>&nbsp;</div>
           <div>)</div>
         </div>
       </div>

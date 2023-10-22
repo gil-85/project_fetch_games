@@ -117,7 +117,7 @@ if ( ! currentURL.includes(`log_in`)){
           }
         
           elementAvatar.childNodes[1].textContent =  newChar_1;
-          elementAvatar.childNodes[9].textContent =  newChar_2;
+          elementAvatar.childNodes[13].textContent =  newChar_2;
           side.textContent =  `${newChar_1} ${newChar_2}`;
 
         break;
@@ -138,7 +138,7 @@ if ( ! currentURL.includes(`log_in`)){
           }
         
           elementAvatar.childNodes[1].textContent =  newChar_1;
-          elementAvatar.childNodes[9].textContent =  newChar_2;
+          elementAvatar.childNodes[13].textContent =  newChar_2;
           side.textContent =  `${newChar_1} ${newChar_2}`;
 
         break;
@@ -156,8 +156,8 @@ if ( ! currentURL.includes(`log_in`)){
               }  
           }
 
-          elementAvatar.childNodes[3].textContent =  newChar_1;
-          elementAvatar.childNodes[7].textContent =  newChar_2;
+          elementAvatar.childNodes[5].textContent =  newChar_1;
+          elementAvatar.childNodes[9].textContent =  newChar_2;
           eyes.textContent = `${newChar_1} ${newChar_2}`;
         
         break; 
@@ -175,8 +175,8 @@ if ( ! currentURL.includes(`log_in`)){
               }  
           }
 
-          elementAvatar.childNodes[3].textContent =  newChar_1;
-          elementAvatar.childNodes[7].textContent =  newChar_2;
+          elementAvatar.childNodes[5].textContent =  newChar_1;
+          elementAvatar.childNodes[9].textContent =  newChar_2;
           eyes.textContent = `${newChar_1} ${newChar_2}`;
         break; 
 
@@ -188,7 +188,7 @@ if ( ! currentURL.includes(`log_in`)){
               else newChar_1 = aMouth[aMouth.length - 1]; 
           }
 
-          elementAvatar.childNodes[5].textContent =  newChar_1;
+          elementAvatar.childNodes[7].textContent =  newChar_1;
           mouth.textContent = `${newChar_1}`;
         
         break; 
@@ -201,7 +201,7 @@ if ( ! currentURL.includes(`log_in`)){
               else newChar_1 = aMouth[0]; 
           }
 
-          elementAvatar.childNodes[5].textContent =  newChar_1;
+          elementAvatar.childNodes[7].textContent =  newChar_1;
           mouth.textContent = `${newChar_1}`;
 
         break; 
@@ -210,8 +210,8 @@ if ( ! currentURL.includes(`log_in`)){
       }
       avatarSet.textContent = `
       ${elementAvatar.childNodes[1].textContent}
-      ${elementAvatar.childNodes[3].textContent}${elementAvatar.childNodes[5].textContent}${elementAvatar.childNodes[7].textContent}
-      ${elementAvatar.childNodes[9].textContent}
+      ${elementAvatar.childNodes[5].textContent}${elementAvatar.childNodes[7].textContent}${elementAvatar.childNodes[9].textContent}
+      ${elementAvatar.childNodes[13].textContent}
       `;
     })
   });
