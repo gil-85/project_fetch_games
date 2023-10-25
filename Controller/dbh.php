@@ -1,6 +1,6 @@
 <?php 
 
-$dsn = "mysql:host=localhost:3307;dbname=players_core";
+$dsn = "mysql:host=localhost:3306;dbname=players_core";
 $dbusername ="root";
 $dbpassword ="";
 
@@ -11,4 +11,3 @@ try{
 }catch (PDOException $e) {
    echo "Connexion failed : " . $e->getMessage();
 }
-
