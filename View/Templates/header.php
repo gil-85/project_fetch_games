@@ -24,7 +24,7 @@
       isset($indexJs) ? $indexJs : null,
       isset($listJs) ? $listJs : null,
       isset($detailJs) ? $detailJs : null,
-      isset($connexionJs) ? $connexionJs : null,
+      isset($signInJs) ? $signInJs : null,
       isset($researchJs) ? $researchJs : null,
   ];
 
