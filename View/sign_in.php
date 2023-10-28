@@ -23,7 +23,6 @@
       <input type="password" placeholder="CONFIRM PASSWORD" autocomplete="new-password" required>
       <button type="button" id="avatars">AVATAR<span class="avatarSet">( -_- )</span></button>
 
-      
       <input type="submit" value="ENTER">
     </form>
     <div class="a-btn above-footer">

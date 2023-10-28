@@ -6,7 +6,7 @@
   /*text-shadow: -1px -1px 4px #000, -1px 1px 4px #000, 1px -1px 4px #000, 1px 1px 4px #000;*/
 }
 
-/* SAME AS RESEARCH.CSS */
+ /*     LIKE RESEARCH     */
 form> button {
   display: flex;
   justify-content: space-between;
@@ -17,6 +17,12 @@ form> button> span {
   color: var(--search_count-clr);
 }
 
+/*
+.avatarSet{
+  background-color: #f008;
+}
+*/
+ 
 .show_list {
   display: grid;
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
@@ -60,9 +66,9 @@ form> button> span {
   flex-direction: column;
   justify-content: center;
 }
+ /*     LIKE RESEARCH     */
  
-/* SAME AS RESEARCH.CSS */
-
+ 
 #d-element_avatar{
   font-size: 2.8rem;
   height: 25dvw;
@@ -73,7 +79,13 @@ form> button> span {
   justify-content: center;
   align-items: center;
   
-  border: .0em solid lime;
+  background-image: linear-gradient(-225deg, hsl(330, 100%, 75%), hsl(0, 100%, 50%), hsl(30, 100%, 25%));
+  text-shadow:
+    -2px 0px 0px var(--txt-clr_neg),
+    0px -2px 0px var(--txt-clr_neg),
+    2px 0px 0px var(--txt-clr_neg),
+    0px 2px 0px var(--txt-clr_neg)
+    ;
 }
 
 
@@ -83,7 +95,6 @@ form> button> span {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 
   padding: .4em;
   border: .2em solid red;  
@@ -101,7 +112,7 @@ form> button> span {
   height: 4em;
 
   margin: .4em 0;
-  border: .1em solid blue; 
+  border: .1em solid var(--txt-clr); 
 }
 
 .d-input_avatar>button{
@@ -118,6 +129,17 @@ form> button> span {
   width: 100%;
 }
 
-
+#bkg{
+  padding: .4em;
+  
+  background-image: linear-gradient(-225deg, hsl(330, 100%, 75%), hsl(0, 100%, 50%), hsl(30, 100%, 25%));
+  
+  text-shadow:
+    -2px 0px 0px var(--txt-clr_neg),
+    0px -2px 0px var(--txt-clr_neg),
+    2px 0px 0px var(--txt-clr_neg),
+    0px 2px 0px var(--txt-clr_neg)
+    ;
+}
 
 

@@ -3,11 +3,10 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   const errorMessage = document.querySelector(`#p-error_message`);
   const email = document.querySelector(`input[type=email]`).value;
   const logname = document.querySelector(`input[type=text]`).value;
-  
 
   if(isValidEmail(email)){
     const aPassword = document.querySelectorAll(`input[type=password]`);
-    //// VERIFY THAT THE PASSWORDS MATCH IF IN SIGN UP ////    
+    //// VERIFY THAT THE PASSWORDS MATCH IF IN SIGN UP ////  
     if ( ! currentURL.includes(`log_in`)) {
       if(aPassword[0].value !== aPassword[1].value){
         errorMessage.textContent= `The passwords don't match`;
@@ -21,7 +20,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 
   if(isValidLogName(logname)){
     if(logname.length < 4 || logname.length > 16){
-      errorMessage.textContent= `The log name should be between 4 and 16 characteres`;
+      errorMessage.textContent= `The log name must be between 4 and 16 characters`;
       return;
     }
   }else {
@@ -47,13 +46,10 @@ const isValidLogName = (logName) => {
   return logNamePattern.test(logName);
 };
 
- 
-
 function connected(email){
   sessionStorage.setItem(`user_email`, email);
   window.location = `../index.php`;
 }
-
 
 if ( ! currentURL.includes(`log_in`)){
   ////  DISPLAY THE AVATAR CREATION FIELDS ////
@@ -78,15 +74,14 @@ if ( ! currentURL.includes(`log_in`)){
   const strSides = `() [] {}`;
   const aSides = strSides.split(' ');
 
-  const strRightEyes = `- o T $ @ >`;
+  const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ๏ ◔`;
   const aRightEyes = strRightEyes.split(' ');
 
-  const strLeftEyes = `- o T $ @ <`;
+  const strLeftEyes = `- o T < • ◢ ◣ ° ^ ˇ ♡ ๏ ◔`;
   const aLeftEyes = strLeftEyes.split(' ');
 
-  const strMouth = `_ . __`;
+  const strMouth = `_ __ . .. ‿ ⎵ ᴥ ︿ ▂ ⌓ ෴`; 
   const aMouth = strMouth.split(' ');
-
 
   const elementAvatar = document.querySelector(`#d-element_avatar`);
   const avatarSet = document.querySelector('#avatars>span');
@@ -95,8 +90,11 @@ if ( ! currentURL.includes(`log_in`)){
   const mouth = document.querySelector(`#mouth`);
   let newChar_1 = ``;
   let newChar_2 = ``;
-
-  //// CHANGE ELEMEMTS OF THE AVATAR ELEMENT AND BETWEEN THE BUTTONS OF SELECTION ////
+  
+  const bkg = document.querySelector(`#bkg`);
+  let bkg_clr = 0;
+  
+  //// CHANGE ELEMEMTS OF THE AVATAR ELEMENT AND BETWEEN THE BUTTONS OF SELECTION  █ ////
   document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
     btn.addEventListener(`click`, e=>{
 
@@ -121,7 +119,6 @@ if ( ! currentURL.includes(`log_in`)){
           side.textContent =  `${newChar_1} ${newChar_2}`;
 
         break;
-        
 
         case `next_side`:
         
@@ -205,6 +202,17 @@ if ( ! currentURL.includes(`log_in`)){
           mouth.textContent = `${newChar_1}`;
 
         break; 
+        
+        ////    ////     ////    ////
+        case `prev_bkg`: 
+          changeBkg(-15);
+        break;
+        case `next_bkg`: 
+          changeBkg(15);
+        break;
+        
+        
+        ////    ////     ////    ////
 
         default : alert(`default`); break;
       }
@@ -215,6 +223,14 @@ if ( ! currentURL.includes(`log_in`)){
       `;
     })
   });
+
+  function changeBkg(n){
+  //alert('function');
+    bkg_clr += n;
+    elementAvatar.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
+    bkg.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
+  }
 }
+
 
 //alert('Connexion ok');

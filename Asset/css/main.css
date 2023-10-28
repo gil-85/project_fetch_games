@@ -1,5 +1,6 @@
 :root{
   --txt-clr: #fff;
+  --txt-clr_neg: #000;
   --body-bkg: linear-gradient(#000, hsl(210, 50%, 30%), #000); 
   --bkg-clr_00: hsla(210, 50%, 50%, .5);
   --bkg_grd-a_btn: linear-gradient(-90deg, #0000, #888, #0000); 
@@ -12,6 +13,7 @@
 
 .light-theme{
   --txt-clr: #000;
+  --txt-clr_neg: #fff;
   --body-bkg: linear-gradient(#fff, hsl(210, 50%, 70%), #fff); 
   --bkg-btn: #fffc;
   --bkg-loading: linear-gradient(-90deg, #0008, #fff, #0008); 
