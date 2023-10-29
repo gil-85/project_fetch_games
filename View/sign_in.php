@@ -1,8 +1,5 @@
   <!-- Header -->
   <?php
-    require_once("../Controller/dbh.php");
-
-    
     $mainCss = '../Asset/css/main.css';
     $connexionCss = '../Asset/css/connexion.css';
 

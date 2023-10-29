@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php
-      $cssFiles = [
+  $cssFiles = [
       isset($indexMainCss) ? $indexMainCss : null,
       isset($mainCss) ? $mainCss : null,
 
@@ -13,7 +13,6 @@
       isset($connexionCss) ? $connexionCss : null,
       isset($researchCss) ? $researchCss : null
    ];
-
 
   $jsFiles = [
       isset($cryptoJS) ? $cryptoJS: null,
@@ -25,7 +24,7 @@
       isset($listJs) ? $listJs : null,
       isset($detailJs) ? $detailJs : null,
       isset($signInJs) ? $signInJs : null,
-      isset($researchJs) ? $researchJs : null,
+      isset($researchJs) ? $researchJs : null
   ];
 
   foreach ($cssFiles as $cssFile) {
@@ -43,10 +42,9 @@
   }
   ?>
 
-  <title><?=$title?></title>
+<title><?=$title?></title>
 </head>
 <body>
-
-<header>
-   <h1>Project Games api</h1>
-</header>
+  <header>
+    <h1>Project Games api</h1>
+  </header>

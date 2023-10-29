@@ -3,27 +3,21 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   const errorMessage = document.querySelector(`#p-error_message`);
   const email = document.querySelector(`input[type=email]`).value;
   const logname = document.querySelector(`input[type=text]`).value;
-  
-/*
-  if(isValidEmail(email)){
-    const aPassword = document.querySelectorAll(`input[type=password]`);
-    //// VERIFY THAT THE PASSWORDS MATCH IF IN SIGN UP ////  
-    if ( ! currentURL.includes(`log_in`)) {
-      if(aPassword[0].value !== aPassword[1].value){
-        errorMessage.textContent= `The passwords don't match`;
-        return;
-      }
-    }
-  }else{
-    errorMessage.textContent= `Email invalid`;
-    return;
-  } 
-*/
 
 const aPassword = document.querySelectorAll(`input[type=password]`);
 
+  errorMessage.textContent = ``;
+  
   if( ! isValidEmail(email)){
     errorMessage.textContent= `Email invalid`;
+    return;
+  }
+  
+  if( ! isValidLogName(logname)){
+    errorMessage.textContent= `The logname can only have letters, numbers, hyphens or underscores`;
+    return;
+  }else if(logname.length < 4 || logname.length > 16){
+    errorMessage.textContent= `The log name must be between 4 and 16 characters`;
     return;
   }
   
@@ -32,29 +26,11 @@ const aPassword = document.querySelectorAll(`input[type=password]`);
     return;
   }
   
-  if( ! isValidLogName(logname)){
-    errorMessage.textContent= `The logname can only have numbers, letters, spaces, hyphens or underscores`;
-    return;
-  }else{
-    if(logname.length < 4 || logname.length > 16){
-      errorMessage.textContent= `The log name must be between 4 and 16 characters`;
-      return;
-    }
-  }
-  
-/*
-  if(isValidLogName(logname)){
-    if(logname.length < 4 || logname.length > 16){
-      errorMessage.textContent= `The log name must be between 4 and 16 characters`;
-      return;
-    }
-  }else {
-    errorMessage.textContent= `The logname can only have numbers, letters, spaces, hyphens or underscores`;
-    return;
-  }
-*/
-  errorMessage.textContent= `OK :)`;
-  connected(email);
+ if(errorMessage.textContent === ``){
+  //alert('No errorMessage: ' +errorMessage.textContent+ ' Ok');
+  window.location = `../Controller/sign_in_controller.php`;
+ }
+ // connected(email);
   return;
 
 });
@@ -66,16 +42,21 @@ const isValidEmail = (email) => {
   return emailPattern.test(email);
 };
 
-const isValidLogName = (logName) => {
 //// CHECK IF THE LOGNAME IS VALID ////
+const isValidLogName = (logName) => {
   const logNamePattern = /^[a-zA-Z0-9_-]+$/;
   return logNamePattern.test(logName);
 };
 
+
+/*
+////  SET THE EMAIL FOR SESSION STORAGE AND REDIRECT TO HOME PAGE ////
 function connected(email){
   sessionStorage.setItem(`user_email`, email);
   window.location = `../index.php`;
 }
+*/
+
 
 ////  DISPLAY THE AVATAR CREATION FIELDS ////
 document.querySelector(`button[type="button"]`).addEventListener(`click`, e=>{
@@ -86,7 +67,7 @@ document.querySelector(`button[type="button"]`).addEventListener(`click`, e=>{
   document.querySelector(`#e_${id}_e`).classList.add('show_list');
 });
   
-////  HIDE THE AVATAR CREATION FIELDS ////
+//// HIDE THE AVATAR CREATION FIELDS ////
 document.querySelector(`#e_avatars`).addEventListener(`click`, e=>{
   document.querySelector(`#${e.target.id}_e`).classList.remove('show_list');
   document.querySelector(`#${e.target.id}_e`).classList.add('ghost');
@@ -117,14 +98,14 @@ let newChar_2 = ``;
 const bkg = document.querySelector(`#bkg`);
 let bkg_clr = 0;
   
-  //// CHANGE ELEMEMTS OF THE AVATAR ELEMENT AND BETWEEN THE BUTTONS OF SELECTION  █ ////
+  //// CHANGE ELEMEMTS OF THE AVATAR ELEMENT AND BETWEEN THE BUTTONS OF SELECTION  ////
 document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
   btn.addEventListener(`click`, e=>{
 
     switch(e.target.id){
 
       case `prev_side`: 
-
+        
         for(let i = 0; i < aSides.length; i++){
           if(side.textContent.charAt(0) === aSides[i][0])
             if(i > 0){
@@ -139,7 +120,6 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
         elementAvatar.childNodes[1].textContent =  newChar_1;
         elementAvatar.childNodes[13].textContent =  newChar_2;
         side.textContent =  `${newChar_1} ${newChar_2}`;
-
       break;
 
       case `next_side`:
@@ -158,7 +138,6 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
         elementAvatar.childNodes[1].textContent =  newChar_1;
         elementAvatar.childNodes[13].textContent =  newChar_2;
         side.textContent =  `${newChar_1} ${newChar_2}`;
-
       break;
         
       case `prev_eyes`: 
@@ -177,10 +156,10 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
         elementAvatar.childNodes[5].textContent =  newChar_1;
         elementAvatar.childNodes[9].textContent =  newChar_2;
         eyes.textContent = `${newChar_1} ${newChar_2}`;
-        
       break; 
 
       case `next_eyes`: 
+        
         for(let i = 0; i < aRightEyes.length; i++){
           if(eyes.textContent.charAt(0) === aRightEyes[i][0])
             if(i < aRightEyes.length - 1){
@@ -207,7 +186,6 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
 
         elementAvatar.childNodes[7].textContent = newChar_1;
         mouth.textContent = `${newChar_1}`;
-        
       break; 
 
       case `next_mouth`: 
@@ -220,20 +198,19 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
 
         elementAvatar.childNodes[7].textContent = newChar_1;
         mouth.textContent = `${newChar_1}`;
-
       break; 
-        ////    ////     ////    ////
+
       case `prev_bkg`: 
+        
         changeBkg(-15);
       break;
+      
       case `next_bkg`: 
+        
         changeBkg(15);
       break;
-        
-        ////    ////     ////    ////
-
-      //default : alert(`default`); break;
     }
+    ////  UPDATE THE AVATAR BUTTON SPAN GREEN TEXT  ////
     avatarSet.textContent = `
     ${elementAvatar.childNodes[1].textContent}
     ${elementAvatar.childNodes[5].textContent}${elementAvatar.childNodes[7].textContent}${elementAvatar.childNodes[9].textContent}
@@ -242,8 +219,8 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
   })
 });
 
+////  CHANGE THE AVATAR BACKGRGOUND ////
 function changeBkg(n){
-//alert('function');
   bkg_clr += n;
   elementAvatar.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
   bkg.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
