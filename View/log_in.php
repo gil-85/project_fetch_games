@@ -1,6 +1,4 @@
-  <!-- Header -->
-  <?php
-
+<?php
     $mainCss = '../Asset/css/main.css';
     $connexionCss = '../Asset/css/connexion.css';
 

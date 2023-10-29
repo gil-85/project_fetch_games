@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<!-- Header -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,4 +49,12 @@
 <body>
   <header>
     <h1>Project Games api</h1>
+    <?php
+      if (isset($_SESSION['logname'])) {
+        echo 'logname: ' . $_SESSION['logname'];
+        echo 'email: ' . $_SESSION['email'];
+      } else {
+        echo 'logname is not set';
+      }
+    ?>
   </header>

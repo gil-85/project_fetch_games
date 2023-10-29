@@ -1,5 +1,4 @@
-<!-- Header -->
-  <?php
+<?php
     $indexMainCss = 'Asset/css/main.css';
     
     $indexMainJs = 'Asset/js/main.js';
@@ -17,7 +16,7 @@
       <a href="View/sign_in.php" class="link-connexion">SIGN IN</a>
       <a href="View/log_in.php" class="link-connexion">LOG IN</a>
       <a href="View/list.php" id="link_favories" class="ghost">FAVORIES</a> 
-      <button class="ghost" id="btn-disconnect">DISCONNECT
+      <button class="ghost" id="btn-disconnect">LOG OUT
       </button>
     </nav>
   </div>

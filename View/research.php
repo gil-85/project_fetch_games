@@ -1,5 +1,4 @@
-  <!-- Header -->
-  <?php
+<?php
     $mainCss = '../Asset/css/main.css';
     $researchCss = '../Asset/css/research.css';
 

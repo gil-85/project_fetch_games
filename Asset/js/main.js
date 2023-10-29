@@ -25,13 +25,13 @@ if( ! currentURL.includes(`index`))
   </a> 
   `;
 
-header.innerHTML += 
+/*header.innerHTML += 
 `
 <span id="user_email">Not connected </span>
 <br> 
 <span style="font-size: .6em; color:cyan;">user0@gmail.com</span>
 `;
-
+*/
 //// DISPLAY THE USER INFO IF CONNECTED ////
 if(sessionStorage.getItem(`user_email`)){
   alert(22);

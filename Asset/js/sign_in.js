@@ -25,13 +25,32 @@ const aPassword = document.querySelectorAll(`input[type=password]`);
     errorMessage.textContent= `The passwords don't match`;
     return;
   }
+ 
   
- if(errorMessage.textContent === ``){
-  //alert('No errorMessage: ' +errorMessage.textContent+ ' Ok');
-  window.location = `../Controller/sign_in_controller.php`;
- }
- // connected(email);
-  return;
+const formData = new FormData();
+formData.append('logname', logname);
+formData.append('email', email);
+
+ if (errorMessage.textContent === '') {
+    fetch('../Controller/sign_in_controller.php', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+        return response.text();
+    })
+    .then(data => {
+      console.log(data);
+      window.location = '../index.php';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+ return;
 
 });
 

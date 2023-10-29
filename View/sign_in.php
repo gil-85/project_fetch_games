@@ -1,5 +1,4 @@
-  <!-- Header -->
-  <?php
+<?php
     $mainCss = '../Asset/css/main.css';
     $connexionCss = '../Asset/css/connexion.css';
 
@@ -15,7 +14,7 @@
     <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
       <input type="email" placeholder="EMAIL" autocomplete="email" required>
-      <input type="text" placeholder="LOG NAME" autocomplete="username" maxlength="16" required>
+      <input type="text" placeholder="LOG NAME" autocomplete="username" maxlength="16" name="logname" required>
       <input type="password" placeholder="PASSWORD" autocomplete="new-password" required>
       <input type="password" placeholder="CONFIRM PASSWORD" autocomplete="new-password" required>
       <button type="button" id="avatars">AVATAR<span class="avatarSet">( -_- )</span></button>
