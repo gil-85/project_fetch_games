@@ -1,9 +1,8 @@
 const btnMode = document.querySelector('#btn-mode');
-const linkConnexion = document.querySelectorAll('.link-connexion');
 const btnDisconnect = document.querySelector(`#btn-disconnect`);
 const linkFavories = document.querySelector('#link_favories')
 
-//// THEME CONTROLS ////
+//// THEMES CONTROL ////
 if (document.body.classList.contains('light-theme')) btnMode.textContent = 'DARK THEME';
     
 btnMode.addEventListener('click', () => {
@@ -17,23 +16,17 @@ btnMode.addEventListener('click', () => {
   }
 });
 
-//// CHANGE LINKS / BUTTON WETHER WE ARE CONNECTED OR NOT ////
-if(sessionStorage.getItem(`user_email`)){
-  btnDisconnect.classList.remove(`ghost`);
-  linkFavories.classList.remove(`ghost`);
-  linkConnexion[0].classList.add(`ghost`);
-  linkConnexion[1].classList.add(`ghost`);   
-} 
-
 //// DISCONNECTION ////
-btnDisconnect.addEventListener(`click`, ()=>{
-  sessionStorage.setItem(`user_email`, ``);
-  document.querySelector(`#user_email`).textContent = 'Not connected';
-    btnDisconnect.classList.add(`ghost`);
-    linkFavories.classList.add(`ghost`);
-    linkConnexion[0].classList.remove(`ghost`);
-    linkConnexion[1].classList.remove(`ghost`); 
-}); 
+if (btnDisconnect) {
+    btnDisconnect.addEventListener('click', async () => {
+      try {
+        const response = await fetch('Controller/log_out.php');
+        window.location.reload();
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  });
+}
 
 //// PREPARE THE DATES INFOS AND LINKS FOR PRESET RESEARCHES  ////
 const currentDate = new Date();
@@ -52,3 +45,4 @@ const presetLinks =
   `;
  
  document.querySelector('nav').insertAdjacentHTML(`afterbegin`, presetLinks);
+ 

@@ -15,14 +15,12 @@ urlParams.forEach((value, key) => {
 });
 let params = aParam.join('&');
 
-
 //// FORMAT ARRAYS RESULTS ////
 const getStrTags = (tags) => { return tags.map(each => each.id); };
 
 const getStrGenres = (params) => { return params.map(each => each.name).join(', '); };
 
 const getStrParentPlatforms = (params) => { return params.map(each => each.platform.name).join(', '); };
-
 
 const showArray = (params, name, maxLength = 1000) => {
     let strParams= ``;

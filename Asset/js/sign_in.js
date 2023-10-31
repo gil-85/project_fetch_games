@@ -1,10 +1,38 @@
+//// OPTIONS FOR THE AVATAR ////
+const strSides = `() [] {}`;
+const aSides = strSides.split(' ');
+
+const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ๏ ◔`;
+const aRightEyes = strRightEyes.split(' ');
+
+const strLeftEyes = `- o T < • ◢ ◣ ° ^ ˇ ♡ ๏ ◔`;
+const aLeftEyes = strLeftEyes.split(' ');
+
+const strMouth = `_ __ . .. ‿ ⎵ ᴥ ︿ ▂ ⌓ ෴`; 
+const aMouth = strMouth.split(' ');
+
+const elementAvatar = document.querySelector(`#d-element_avatar`);
+const avatarSet = document.querySelector('#avatar>span');
+const side = document.querySelector(`#side`);
+const eyes = document.querySelector(`#eyes`);
+const mouth = document.querySelector(`#mouth`);
+let newChar_1 = ``;
+let newChar_2 = ``;
+  
+const bkg = document.querySelector(`#bkg`);
+let bkg_clr = 0;
+
 document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   e.preventDefault();
   const errorMessage = document.querySelector(`#p-error_message`);
   const email = document.querySelector(`input[type=email]`).value;
   const logname = document.querySelector(`input[type=text]`).value;
 
-const aPassword = document.querySelectorAll(`input[type=password]`);
+  const aPassword = document.querySelectorAll(`input[type=password]`);
+  
+  const avatarSet = document.querySelector('#avatar>span');
+  
+ // const avatars = document.querySelector('#avatars');
 
   errorMessage.textContent = ``;
   
@@ -26,12 +54,21 @@ const aPassword = document.querySelectorAll(`input[type=password]`);
     return;
   }
  
-  
 const formData = new FormData();
+
 formData.append('logname', logname);
 formData.append('email', email);
+formData.append('password', aPassword[0].value);
+
+let avatarAndBkg = avatarSet.textContent + bkg_clr;
+alert(avatarAndBkg);
+formData.append('avatar', avatarAndBkg);
+
 
  if (errorMessage.textContent === '') {
+   
+   signIn(formData);
+   /*
     fetch('../Controller/sign_in_controller.php', {
       method: 'POST',
       body: formData,
@@ -49,10 +86,26 @@ formData.append('email', email);
     .catch(error => {
       console.error('Error:', error);
     });
-}
+    */
+  }
  return;
-
 });
+
+////  GO TO THE SIGN IN SCRIPT WITH THE PARAMETERS ////
+const signIn = async (formData) => {
+  try {
+    const res = await fetch('../Controller/sign_in_controller.php', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error('Network response was not ok');
+    
+    window.location = '../index.php';
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
 
 //// CHECK IF THE EMAIL IS VALID ////
@@ -68,15 +121,6 @@ const isValidLogName = (logName) => {
 };
 
 
-/*
-////  SET THE EMAIL FOR SESSION STORAGE AND REDIRECT TO HOME PAGE ////
-function connected(email){
-  sessionStorage.setItem(`user_email`, email);
-  window.location = `../index.php`;
-}
-*/
-
-
 ////  DISPLAY THE AVATAR CREATION FIELDS ////
 document.querySelector(`button[type="button"]`).addEventListener(`click`, e=>{
   let id = e.target.id;
@@ -87,36 +131,11 @@ document.querySelector(`button[type="button"]`).addEventListener(`click`, e=>{
 });
   
 //// HIDE THE AVATAR CREATION FIELDS ////
-document.querySelector(`#e_avatars`).addEventListener(`click`, e=>{
+document.querySelector(`#e_avatar`).addEventListener(`click`, e=>{
   document.querySelector(`#${e.target.id}_e`).classList.remove('show_list');
   document.querySelector(`#${e.target.id}_e`).classList.add('ghost');
 });
 
-
-//// OPTIONS FOR THE AVATAR ////
-const strSides = `() [] {}`;
-const aSides = strSides.split(' ');
-
-const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ๏ ◔`;
-const aRightEyes = strRightEyes.split(' ');
-
-const strLeftEyes = `- o T < • ◢ ◣ ° ^ ˇ ♡ ๏ ◔`;
-const aLeftEyes = strLeftEyes.split(' ');
-
-const strMouth = `_ __ . .. ‿ ⎵ ᴥ ︿ ▂ ⌓ ෴`; 
-const aMouth = strMouth.split(' ');
-
-const elementAvatar = document.querySelector(`#d-element_avatar`);
-const avatarSet = document.querySelector('#avatars>span');
-const side = document.querySelector(`#side`);
-const eyes = document.querySelector(`#eyes`);
-const mouth = document.querySelector(`#mouth`);
-let newChar_1 = ``;
-let newChar_2 = ``;
-  
-const bkg = document.querySelector(`#bkg`);
-let bkg_clr = 0;
-  
   //// CHANGE ELEMEMTS OF THE AVATAR ELEMENT AND BETWEEN THE BUTTONS OF SELECTION  ////
 document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
   btn.addEventListener(`click`, e=>{

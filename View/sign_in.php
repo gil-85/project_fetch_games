@@ -13,11 +13,11 @@
   <div class="content-primary" id="content">
     <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
-      <input type="email" placeholder="EMAIL" autocomplete="email" required>
+      <input type="email" placeholder="EMAIL" autocomplete="email" value="user0@gmail.com" required>
       <input type="text" placeholder="LOG NAME" autocomplete="username" maxlength="16" name="logname" required>
       <input type="password" placeholder="PASSWORD" autocomplete="new-password" required>
       <input type="password" placeholder="CONFIRM PASSWORD" autocomplete="new-password" required>
-      <button type="button" id="avatars">AVATAR<span class="avatarSet">( -_- )</span></button>
+      <button type="button" id="avatar">AVATAR<span>( -_- )</span></button>
 
       <input type="submit" value="ENTER">
     </form>
@@ -29,7 +29,7 @@
   </div>
 
       <!-- ////     AVATARS    //// -->
-      <div class="ghost" id="e_avatars_e">
+      <div class="ghost" id="e_avatar_e">
       
       <div class="d-grid_1" id="d-avatar_selected">
         <div id="d-element_avatar">
@@ -43,7 +43,7 @@
         </div>
       </div>
       
-      <div class="d-grid_2" id="d-avatars_list">
+      <div class="d-grid_2" id="d-avatar_list">
         <div class="d-grid_2_input-hand">
 
           <div class="d-d-input_avatar">
@@ -75,7 +75,7 @@
       
       <div class="d-grid_3">
         <div class="a-btn">
-          <button id="e_avatars">[ O ]</button>
+          <button id="e_avatar">[ O ]</button>
         </div>
       </div>
       

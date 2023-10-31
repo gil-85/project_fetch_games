@@ -13,11 +13,20 @@
     <nav id="display_column">
       <a href="View/research.php">RESEARCH</a>
       <button id="btn-mode">LIGHT THEME</button> 
-      <a href="View/sign_in.php" class="link-connexion">SIGN IN</a>
-      <a href="View/log_in.php" class="link-connexion">LOG IN</a>
-      <a href="View/list.php" id="link_favories" class="ghost">FAVORIES</a> 
-      <button class="ghost" id="btn-disconnect">LOG OUT
-      </button>
+      <?php
+      if( ! isset($_SESSION['logname'])){
+        echo '
+        <a href="View/sign_in.php" class="link-connexion">SIGN IN</a>
+        <a href="View/log_in.php" class="link-connexion">LOG IN</a>
+        ';
+      }
+      if(isset($_SESSION['logname'])){
+        echo '
+        <a href="View/list.php" id="link_favories">FAVORIES</a> 
+        <button id="btn-disconnect">LOG OUT</button>
+        ';
+      }
+      ?>
     </nav>
   </div>
   <!-- footer -->
