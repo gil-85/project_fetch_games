@@ -22,9 +22,9 @@ let newChar_2 = ``;
 const bkg = document.querySelector(`#bkg`);
 let bkg_clr = 0;
 
+const errorMessage = document.querySelector(`#p-error_message`);
 document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   e.preventDefault();
-  const errorMessage = document.querySelector(`#p-error_message`);
   const email = document.querySelector(`input[type=email]`).value;
   const logname = document.querySelector(`input[type=text]`).value;
 
@@ -54,58 +54,45 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
     return;
   }
  
-const formData = new FormData();
+  const formData = new FormData();
 
-formData.append('logname', logname);
-formData.append('email', email);
-formData.append('password', aPassword[0].value);
+  formData.append('logname', logname);
+  formData.append('email', email);
+  formData.append('password', aPassword[0].value);
 
-let avatarAndBkg = avatarSet.textContent + bkg_clr;
-alert(avatarAndBkg);
-formData.append('avatar', avatarAndBkg);
+  let avatarAndBkg = avatarSet.textContent + bkg_clr;
+  //alert(avatarAndBkg);
+  formData.append('avatar', avatarAndBkg);
 
 
- if (errorMessage.textContent === '') {
+  if (errorMessage.textContent === '') {
    
    signIn(formData);
-   /*
-    fetch('../Controller/sign_in_controller.php', {
-      method: 'POST',
-      body: formData,
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-        return response.text();
-    })
-    .then(data => {
-      console.log(data);
-      window.location = '../index.php';
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-    */
   }
  return;
 });
 
+
 ////  GO TO THE SIGN IN SCRIPT WITH THE PARAMETERS ////
 const signIn = async (formData) => {
+
   try {
     const res = await fetch('../Controller/sign_in_controller.php', {
       method: 'POST',
       body: formData,
     });
-
-    if (!res.ok) throw new Error('Network response was not ok');
-    
+  
+    if ( ! res.ok) throw new Error('Network response was not ok');
     window.location = '../index.php';
   } catch (error) {
     console.error('Error:', error);
-  }
+  }   
 }
+
+
+
+
+
 
 
 //// CHECK IF THE EMAIL IS VALID ////

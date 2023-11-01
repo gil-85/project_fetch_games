@@ -56,7 +56,7 @@
         echo '<br> _password: ' . $_SESSION['password'];
         echo ' _avatar: ' . $_SESSION['avatar'];
       } else {
-        echo 'logname is not set';
+        echo 'Not connected';
       }
     ?>
   </header>

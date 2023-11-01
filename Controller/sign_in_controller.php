@@ -1,23 +1,26 @@
 <?php
-session_start();
-require_once("../Controller/dbh.php");
+  session_start();
+  
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $logname = $_POST['logname'];
     $email = $_POST['email'];
+    $logname = $_POST['logname'];
     $password = $_POST['password'];
     $avatar = $_POST['avatar'];
-    
-  
-    $_SESSION['logname'] = $logname;
+
+    require_once("dbh.php");
+
+    $query = "INSERT INTO users (email, logname, password, avatar) VALUES (?,?,?,?);";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$email, $logname, $password, $avatar]);
+    $pdo = null;
+    $stmt = null; 
+
     $_SESSION['email'] = $email;
+    $_SESSION['logname'] = $logname;
     $_SESSION['password'] = $password;
     $_SESSION['avatar'] = $avatar;
-    
-} else {
-  header('Location: ../index.php');
-}
-?>
 
-//header('Location: ../index.php');
-//exit;
+  }else{
+    die("Wrong path");
+  }
