@@ -238,18 +238,29 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
         changeBkg(15);
       break;
     }
-    ////  UPDATE THE AVATAR BUTTON SPAN GREEN TEXT  ////
-    avatarSet.textContent = `
-    ${elementAvatar.childNodes[1].textContent}
-    ${elementAvatar.childNodes[5].textContent}${elementAvatar.childNodes[7].textContent}${elementAvatar.childNodes[9].textContent}
-    ${elementAvatar.childNodes[13].textContent}
-      `;
+    ////  UPDATE THE AVATAR BUTTON SPAN GREEN TEXT, THE VALUE WILL BE USED FOR THE DATABASE QUERY ////
+
+    avatarSet.textContent = elementAvatar.childNodes[1].textContent + 
+    ' ' + 
+    elementAvatar.childNodes[5].textContent + 
+    elementAvatar.childNodes[7].textContent +
+    elementAvatar.childNodes[9].textContent +
+     ' ' + 
+     elementAvatar.childNodes[13].textContent
+    ;
   })
 });
 
 ////  CHANGE THE AVATAR BACKGRGOUND ////
 function changeBkg(n){
+  //// KEEPS VALUE BETWEEN 0 AND 360 ////
+  if(n < 0 && bkg_clr === 0) bkg_clr = 360;
+  if(n > 0 && bkg_clr === 360) bkg_clr = 0;
+  
   bkg_clr += n;
+
+  //bkg.textContent = bkg_clr;
+
   elementAvatar.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
   bkg.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
 }

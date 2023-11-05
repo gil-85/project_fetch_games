@@ -2,8 +2,6 @@
   session_start();
   
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-  
     require_once("../Model/users_model.php");
 
     if (isset($_POST["action"]) and $_POST["action"] === 'signing') {
@@ -19,7 +17,6 @@
       $_SESSION['logname'] = $logname;
       $_SESSION['password'] = $password;
       $_SESSION['avatar'] = $avatar;
-
     }
 
 
