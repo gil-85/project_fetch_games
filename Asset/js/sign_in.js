@@ -54,8 +54,11 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
     return;
   }
  
+  const action = 'signing';
   const formData = new FormData();
 
+
+  formData.append('action', action);
   formData.append('logname', logname);
   formData.append('email', email);
   formData.append('password', aPassword[0].value);
@@ -77,7 +80,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 const signIn = async (formData) => {
 
   try {
-    const res = await fetch('../Controller/sign_in_controller.php', {
+    const res = await fetch('../Controller/users_controller.php', {
       method: 'POST',
       body: formData,
     });
