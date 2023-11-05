@@ -10,7 +10,7 @@
 
     include_once('Templates/header.php')
   ?>
-  <div class="content-primary" id="content">
+  <div class="content-primary" id="content" enctype="multipart/form-data">
     <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
       <input type="email" placeholder="EMAIL" autocomplete="email" value="user0@gmail.com" required>

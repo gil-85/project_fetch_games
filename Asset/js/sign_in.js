@@ -63,7 +63,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   formData.append('email', email);
   formData.append('password', aPassword[0].value);
 
-  let avatarAndBkg = avatarSet.textContent + bkg_clr;
+  let avatarAndBkg = 'avatar';//avatarSet.textContent + bkg_clr;
   //alert(avatarAndBkg);
   formData.append('avatar', avatarAndBkg);
 
@@ -77,6 +77,10 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 
 
 ////  GO TO THE SIGN IN SCRIPT WITH THE PARAMETERS ////
+
+
+        //sign_in.js : 
+
 const signIn = async (formData) => {
 
   try {
@@ -84,13 +88,22 @@ const signIn = async (formData) => {
       method: 'POST',
       body: formData,
     });
-  
+    console.log(res);
     if ( ! res.ok) throw new Error('Network response was not ok');
-    window.location = '../index.php';
+
+
+    const data = await res.json();  
+    console.log(data);
+    errorMessage.textContent = data.response;
+ 
+  
+    //window.location = '../index.php';
   } catch (error) {
     console.error('Error:', error);
   }   
 }
+
+
 
 
 

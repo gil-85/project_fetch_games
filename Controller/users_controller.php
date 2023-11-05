@@ -1,25 +1,26 @@
 <?php
-  session_start();
-  
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once("../Model/users_model.php");
+session_start();
+require_once("../Model/users_model.php");
 
-    if (isset($_POST["action"]) and $_POST["action"] === 'signing') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST["action"]) && $_POST["action"] === 'signing') {
+    $email = $_POST['email'];
 
-      $email = $_POST['email'];
-      $logname = $_POST['logname'];
-      $password = $_POST['password'];
-      $avatar = $_POST['avatar'];
-
-      dbSignUp($email, $logname, $password, $avatar);
-  
-      $_SESSION['email'] = $email;
-      $_SESSION['logname'] = $logname;
-      $_SESSION['password'] = $password;
-      $_SESSION['avatar'] = $avatar;
-    }
+    //$userExists = getUserByEmail($email);
 
 
-  }else{
-    die("Wrong path");
+    
+    $logname = $_POST['logname'];
+    $password = $_POST['password'];
+    $avatar = $_POST['avatar'];
+
+    signUp($email, $logname, $password, $avatar);
+
+    $_SESSION['email'] = $email;
+    $_SESSION['logname'] = $logname;
+    $_SESSION['password'] = $password;
+    $_SESSION['avatar'] = $avatar;
   }
+} else {
+  die("Wrong path");
+}

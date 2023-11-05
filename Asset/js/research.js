@@ -557,7 +557,8 @@ form.addEventListener(`submit`, e =>{
 
      
    // if(filteredsearch.length > 0)
-    location.href = `list.php?title=Found${filteredsearch}`; 
+    const newWindow = window.open('', '_blank');
+    newWindow.location.href = `list.php?title=Found${filteredsearch}`; 
   } 
   
 }); 

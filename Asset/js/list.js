@@ -99,16 +99,17 @@ const loadGames = async () => {
     }); 
     
     btnLoadMore.parentNode.classList.toggle('ninja', ! nextGameListURL);
-    
+
 
     //// LINK THE IMAGES TO THE DETAILS PAGE ////
-    const linkImg = document.querySelectorAll(`.link-img`);
+    const linkImg = document.querySelectorAll('.link-img');
     linkImg.forEach(img => {
-      img.addEventListener(`click`,(e)=>{
-        location.href = `detail.php?id=${e.target.id}`; 
+      img.addEventListener('click', (e) => {
+        const newWindow = window.open('', '_blank');
+        newWindow.location.href = `detail.php?id=${e.target.id}`;
       });
     });
-
+    
   }catch(err){
     alert(`ERROR : ${err}`);
   }
