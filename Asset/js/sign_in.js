@@ -23,6 +23,8 @@ const bkg = document.querySelector(`#bkg`);
 let bkg_clr = 0;
 
 const errorMessage = document.querySelector(`#p-error_message`);
+
+
 document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   e.preventDefault();
   const email = document.querySelector(`input[type=email]`).value;
@@ -61,8 +63,6 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   formData.append('action', action);
   formData.append('email', email);
   
-
-
  if (errorMessage.textContent === '') {
     checkIfEmailExist(formData);
   }  
@@ -71,7 +71,6 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 /////////////////////////////////////////////////
   action = 'signing';
   formData.append('action', action);
-  alert(action);
   formData.append('logname', logname);
   formData.append('password', aPassword[0].value);
   let avatarAndBkg = avatarSet.textContent + bkg_clr;
@@ -99,10 +98,15 @@ const checkIfEmailExist = async (formData) => {
     const data = await res.json();  
     console.log(data.response);
 
-    
+    if(data.response === 'New email')
+      console.log(`function here`);
+    else console.log(` otherfunction here`);
+
     errorMessage.textContent = data.response;
  
   
+
+
     //window.location = '../index.php';
   } catch (error) {
     console.error('Error:', error);

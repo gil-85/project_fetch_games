@@ -17,16 +17,13 @@ function  signUp($email, $logname, $password, $avatar){
 function checkEmail($email) {
    require_once("dbh.php");
   
-      $query = "SELECT user_id FROM users WHERE email = ?;";
-      $stmt = $pdo->prepare($query);
-      $stmt->execute([$email]);
-      
-      $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      $pdo = null;
-      $stmt = null;
-
-      return $user;
-
+   $query = "SELECT user_id FROM users WHERE email = ?;";
+   $stmt = $pdo->prepare($query);
+   $stmt->execute([$email]);
+   
+   $user = $stmt->fetch(PDO::FETCH_ASSOC);
+   $pdo = null;
+   $stmt = null;
+   return $user;
 } 
    

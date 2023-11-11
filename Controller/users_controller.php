@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
     try{
       if(checkEmail($email)){
-        $data = array('response' => 'Email exists');
+        $data = array('response' => 'This email already exists');
       }else{
-        $data = array('response' => 'New email !!!!');
+        $data = array('response' => 'New email');
       }
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
