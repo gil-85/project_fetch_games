@@ -19,8 +19,7 @@
         <a href="View/sign_in.php" class="link-connexion">SIGN IN</a>
         <a href="View/log_in.php" class="link-connexion">LOG IN</a>
         ';
-      }
-      if(isset($_SESSION['logname'])){
+      }else{
         echo '
         <a href="View/list.php" id="link_favories">FAVORIES</a> 
         <button id="btn-disconnect">LOG OUT</button>

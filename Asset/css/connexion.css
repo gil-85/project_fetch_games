@@ -14,7 +14,10 @@ form> button {
 
 form> button> span {
   padding: 0 2em;
-  color: var(--search_count-clr);
+  color: var(--search_count-clr);  
+  position: relative;
+  height: 0;
+  bottom: .24em;
 }
 
 /*
@@ -141,5 +144,3 @@ form> button> span {
     0px 2px 0px var(--txt-clr_neg)
     ;
 }
-
-

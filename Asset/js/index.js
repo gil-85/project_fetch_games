@@ -17,16 +17,26 @@ btnMode.addEventListener('click', () => {
 });
 
 //// DISCONNECTION ////
+
+
 if (btnDisconnect) {
     btnDisconnect.addEventListener('click', async () => {
-      try {
-        const response = await fetch('Controller/log_out.php');
-        window.location.reload();
-    } catch (error) {
-      console.error('Error during logout:', error);
-    }
+      if(confirm('Log out ?')) logout(); 
   });
 }
+
+////
+const logout = async () => {
+  try {
+    const response = await fetch('Controller/log_out.php');
+        window.location.reload();
+  } catch (error) {
+      console.error('Error during logout:', error);
+  }
+};
+
+////
+
 
 //// PREPARE THE DATES INFOS AND LINKS FOR PRESET RESEARCHES  ////
 const currentDate = new Date();

@@ -6,6 +6,9 @@ form> button {
 form> button> span {
   padding: 0 2em;
   color: var(--search_count-clr);
+  position: relative;
+  height: 0;
+  bottom: .24em;
 }
 
 form> button:last-child>span{
