@@ -53,34 +53,69 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
     errorMessage.textContent= `The passwords don't match`;
     return;
   }
- 
-  const action = 'signing';
+
+  let action = 'checkEmail';
+
+
   const formData = new FormData();
-
-
   formData.append('action', action);
-  formData.append('logname', logname);
   formData.append('email', email);
-  formData.append('password', aPassword[0].value);
+  
 
-  let avatarAndBkg = 'avatar';//avatarSet.textContent + bkg_clr;
-  //alert(avatarAndBkg);
+
+ if (errorMessage.textContent === '') {
+    checkIfEmailExist(formData);
+  }  
+  
+
+/////////////////////////////////////////////////
+  action = 'signing';
+  formData.append('action', action);
+  alert(action);
+  formData.append('logname', logname);
+  formData.append('password', aPassword[0].value);
+  let avatarAndBkg = avatarSet.textContent + bkg_clr;
   formData.append('avatar', avatarAndBkg);
 
-
-  if (errorMessage.textContent === '') {
-   
-   signIn(formData);
-  }
+ // signIn(formData);
+  //////////////////////////////////////////////////////
  return;
 });
 
 
+////  CHECK IF EMAIL DOES NOT ELREADY EXIST ////
+ 
+const checkIfEmailExist = async (formData) => {
+  
+  try {
+    const res = await fetch('../Controller/users_controller.php', {
+      method: 'POST',
+      body: formData,
+    });
+    console.log(res);
+    if ( ! res.ok) throw new Error('Network response was not ok');
+
+
+    const data = await res.json();  
+    console.log(data.response);
+
+    
+    errorMessage.textContent = data.response;
+ 
+  
+    //window.location = '../index.php';
+  } catch (error) {
+    console.error('Error:', error);
+  }   
+
+} 
+
+
+
+
+
+
 ////  GO TO THE SIGN IN SCRIPT WITH THE PARAMETERS ////
-
-
-        //sign_in.js : 
-
 const signIn = async (formData) => {
 
   try {

@@ -2,25 +2,57 @@
 session_start();
 require_once("../Model/users_model.php");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if (isset($_POST["action"]) && $_POST["action"] === 'signing') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
+  $action = $_POST["action"];
+
+
+  
+  if ($action === 'checkEmail') {
+  
     $email = $_POST['email'];
 
-    //$userExists = getUserByEmail($email);
+    try{
+      if(checkEmail($email)){
+        $data = array('response' => 'Email exists');
+      }else{
+        $data = array('response' => 'New email !!!!');
+      }
+    }catch(Exception $e){
+      $data = array('response' => 'Error: ' . $e->getMessage());
+    }
+    echo json_encode($data); 
 
+  }
 
-    
+  if ($action === 'signing') {
+
+    $email = $_POST['email'];
+
     $logname = $_POST['logname'];
     $password = $_POST['password'];
     $avatar = $_POST['avatar'];
 
-    signUp($email, $logname, $password, $avatar);
+    try{
+      signUp($email, $logname, $password, $avatar);
+      $data = array('response' => 'oki');
+    }catch(Exception $e){
+      $data = array('response' => 'Error: ' . $e->getMessage());
+    }
+
+    echo json_encode($data); 
 
     $_SESSION['email'] = $email;
     $_SESSION['logname'] = $logname;
     $_SESSION['password'] = $password;
     $_SESSION['avatar'] = $avatar;
   }
+
+
+
+
+
 } else {
   die("Wrong path");
 }
+
+//$userExists = getUserByEmail($email);
