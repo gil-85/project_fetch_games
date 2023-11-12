@@ -24,17 +24,27 @@ let bkg_clr = 0;
 
 const errorMessage = document.querySelector(`#p-error_message`);
 
+const emailInput = document.querySelector(`input[type=email]`);
+const lognameInput = document.querySelector(`input[type=text]`);
+const aPassword = document.querySelectorAll(`input[type=password]`);
+let email = ``;
+let logname = ``;
+let password =``;
+let action =  ``;
+const formData = new FormData();
+//const avatarSet = document.querySelector('#avatar>span');
+
+
+
+
+
 
 document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   e.preventDefault();
-  const email = document.querySelector(`input[type=email]`).value;
-  const logname = document.querySelector(`input[type=text]`).value;
-
-  const aPassword = document.querySelectorAll(`input[type=password]`);
   
-  const avatarSet = document.querySelector('#avatar>span');
-  
- // const avatars = document.querySelector('#avatars');
+  email = emailInput.value;
+  password = aPassword[0].value;
+  logname = lognameInput.value;
 
   errorMessage.textContent = ``;
   
@@ -56,35 +66,22 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
     return;
   }
 
-  let action = 'checkEmail';
+  action = 'checkEmail';
 
-
-  const formData = new FormData();
+ 
   formData.append('action', action);
   formData.append('email', email);
   
  if (errorMessage.textContent === '') {
-    checkIfEmailExist(formData);
+    checkIfNewEmailBeforSingUp(formData);
   }  
-  
-
-/////////////////////////////////////////////////
-  action = 'signing';
-  formData.append('action', action);
-  formData.append('logname', logname);
-  formData.append('password', aPassword[0].value);
-  let avatarAndBkg = avatarSet.textContent + bkg_clr;
-  formData.append('avatar', avatarAndBkg);
-
- // signIn(formData);
-  //////////////////////////////////////////////////////
- return;
+  return;
 });
 
 
-////  CHECK IF EMAIL DOES NOT ELREADY EXIST ////
+////  CHECK IF EMAIL DOES NOT ALREADY EXISTS ////
  
-const checkIfEmailExist = async (formData) => {
+const checkIfNewEmailBeforSingUp = async (formData) => {
   
   try {
     const res = await fetch('../Controller/users_controller.php', {
@@ -98,29 +95,45 @@ const checkIfEmailExist = async (formData) => {
     const data = await res.json();  
     console.log(data.response);
 
-    if(data.response === 'New email')
-      console.log(`function here`);
-    else console.log(` otherfunction here`);
+    if(data.response !== false){
+      errorMessage.textContent = `This email already exists`;
+      return;
+    }
 
-    errorMessage.textContent = data.response;
+    let avatarAndBkg = avatarSet.textContent + bkg_clr;
+
+    action = 'signing';
+
+    formData.append('action', action);
+    formData.append('logname', logname);
+    formData.append('password', aPassword);
+    formData.append('avatar', avatarAndBkg);
+    
+    signIn(formData); 
  
   
-
-
-    //window.location = '../index.php';
   } catch (error) {
     console.error('Error:', error);
   }   
 
 } 
 
+/*   action = 'signing';
+  formData.append('action', action);
+  formData.append('logname', logname);
+  formData.append('password', aPassword[0].value);
+  let avatarAndBkg = avatarSet.textContent + bkg_clr;
+  formData.append('avatar', avatarAndBkg);
 
-
+ // signIn(formData); */
 
 
 
 ////  GO TO THE SIGN IN SCRIPT WITH THE PARAMETERS ////
 const signIn = async (formData) => {
+
+  
+
 
   try {
     const res = await fetch('../Controller/users_controller.php', {
