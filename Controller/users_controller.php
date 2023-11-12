@@ -10,9 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
   if ($action === 'checkEmail') {
   
     $email = $_POST['email'];
+    $logname = $_POST['logname'];
 
     try{
-      $data = array('response' => checkEmail($email));
+      $data = array('response' => checkEmail($email, $logname));
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
     }

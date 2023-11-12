@@ -71,17 +71,18 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
  
   formData.append('action', action);
   formData.append('email', email);
+  formData.append('logname', logname);
   
  if (errorMessage.textContent === '') {
-    checkIfNewEmailBeforSingUp(formData);
+    checkIfNewEmailBeforSingIn(formData);
   }  
   return;
 });
 
 
-////  CHECK IF EMAIL DOES NOT ALREADY EXISTS ////
+//// GO TO THE SIGN IN CONTROLLER WITH THE PARAMETERS TO CHECK IF EMAIL DOES NOT ALREADY EXISTS ////
  
-const checkIfNewEmailBeforSingUp = async (formData) => {
+const checkIfNewEmailBeforSingIn = async (formData) => {
   
   try {
     const res = await fetch('../Controller/users_controller.php', {
@@ -91,12 +92,14 @@ const checkIfNewEmailBeforSingUp = async (formData) => {
     console.log(res);
     if ( ! res.ok) throw new Error('Network response was not ok');
 
-
     const data = await res.json();  
-    console.log(data.response);
+    console.log(data.response.email);
+    console.log(data.response.logname);
 
+    
     if(data.response !== false){
-      errorMessage.textContent = `This email already exists`;
+      if(data.response.email === email) errorMessage.textContent = `This email already exists`;
+      else errorMessage.textContent = `This logname already exists`;
       return;
     }
 
@@ -105,34 +108,19 @@ const checkIfNewEmailBeforSingUp = async (formData) => {
     action = 'signing';
 
     formData.append('action', action);
-    formData.append('logname', logname);
-    formData.append('password', aPassword);
+    formData.append('password', password);
     formData.append('avatar', avatarAndBkg);
     
     signIn(formData); 
  
-  
   } catch (error) {
     console.error('Error:', error);
   }   
 
 } 
 
-/*   action = 'signing';
-  formData.append('action', action);
-  formData.append('logname', logname);
-  formData.append('password', aPassword[0].value);
-  let avatarAndBkg = avatarSet.textContent + bkg_clr;
-  formData.append('avatar', avatarAndBkg);
-
- // signIn(formData); */
-
-
-
-////  GO TO THE SIGN IN SCRIPT WITH THE PARAMETERS ////
+////  GO TO THE SIGN IN CONTROLLER WITH THE PARAMETERS TO SIGN IN////
 const signIn = async (formData) => {
-
-  
 
 
   try {
@@ -144,9 +132,9 @@ const signIn = async (formData) => {
     if ( ! res.ok) throw new Error('Network response was not ok');
 
 
-    const data = await res.json();  
+     const data = await res.json();  
     console.log(data);
-    errorMessage.textContent = data.response;
+    errorMessage.textContent = data.response; 
  
   
     //window.location = '../index.php';

@@ -14,12 +14,12 @@ function  signUp($email, $logname, $password, $avatar){
 
 
 
-function checkEmail($email) {
+function checkEmail($email, $logname) {
    require_once("dbh.php");
   
-   $query = "SELECT user_id FROM users WHERE email = ?;";
+   $query = "SELECT email, logname FROM users WHERE email = ? OR logname = ?;";
    $stmt = $pdo->prepare($query);
-   $stmt->execute([$email]);
+   $stmt->execute([$email, $logname]);
    
    $user = $stmt->fetch(PDO::FETCH_ASSOC);
    $pdo = null;
