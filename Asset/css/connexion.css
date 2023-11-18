@@ -61,14 +61,15 @@ form> button> span {
   background-image: #0000;
   border: .0em solid lime;
 }
-
- .d-grid_2> .d-grid_2_input-hand{
+/*  
+.d-grid_2> .d-grid_2_input-hand{
   height: 50%;
   margin: 25% 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+ */
  /*     LIKE RESEARCH     */
  
  
@@ -82,7 +83,7 @@ form> button> span {
   justify-content: center;
   align-items: center;
   
-  background-image: linear-gradient(-225deg, hsl(330, 100%, 75%), hsl(0, 100%, 50%), hsl(30, 100%, 25%));
+  background-image: linear-gradient(-225deg, hsl(330, 100%, 95%), hsl(0, 100%, 50%), hsl(30, 100%, 5%));
   text-shadow:
     -2px 0px 0px var(--txt-clr_neg),
     0px -2px 0px var(--txt-clr_neg),
@@ -100,7 +101,6 @@ form> button> span {
   justify-content: space-between;
 
   padding: .4em;
-  border: .2em solid red;  
   border-bottom: .1em solid var(--txt-clr);
 }
 
@@ -133,9 +133,9 @@ form> button> span {
 }
 
 #bkg{
-  padding: .4em;
-  
-  background-image: linear-gradient(-225deg, hsl(330, 100%, 75%), hsl(0, 100%, 50%), hsl(30, 100%, 25%));
+  height: 50%;
+  padding: 0 1.5em;
+  background-image: linear-gradient(-225deg, hsl(330, 100%, 95%), hsl(0, 100%, 50%), hsl(30, 100%, 5%));
   
   text-shadow:
     -2px 0px 0px var(--txt-clr_neg),

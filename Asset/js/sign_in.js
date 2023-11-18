@@ -21,7 +21,7 @@ let newChar_2 = ``;
   
 const bkg = document.querySelector(`#bkg`);
 let bkg_clr = 0;
-
+let saturation = '100%';
 const errorMessage = document.querySelector(`#p-error_message`);
 
 const emailInput = document.querySelector(`input[type=email]`);
@@ -265,13 +265,24 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
       break; 
 
       case `prev_bkg`: 
-        
+
         changeBkg(-15);
       break;
       
       case `next_bkg`: 
         
         changeBkg(15);
+      break;
+
+      case `bkg`:
+
+      if(bkg.textContent === `0`){
+        changeBkg(`0%`);
+        bkg.textContent = `1`;
+      }else{
+        changeBkg(`100%`);
+        bkg.textContent = `0`;
+      }
       break;
     }
     ////  UPDATE THE AVATAR BUTTON SPAN GREEN TEXT, THE VALUE WILL BE USED FOR THE DATABASE QUERY ////
@@ -290,15 +301,18 @@ document.querySelectorAll(`.d-input_avatar>button`).forEach(btn =>{
 ////  CHANGE THE AVATAR BACKGRGOUND ////
 function changeBkg(n){
   //// KEEPS VALUE BETWEEN 0 AND 360 ////
-  if(n < 0 && bkg_clr === 0) bkg_clr = 360;
-  if(n > 0 && bkg_clr === 360) bkg_clr = 0;
-  
-  bkg_clr += n;
+  if(typeof n === `string`) saturation = n;
+  else{
+    if(n < 0 && bkg_clr === 0) bkg_clr = 360;
+    if(n > 0 && bkg_clr === 360) bkg_clr = 0;
+    bkg_clr += n;
+  }
+
 
   //bkg.textContent = bkg_clr;
 
-  elementAvatar.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
-  bkg.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, 100%, 75%), hsl(${bkg_clr}, 100%, 50%), hsl(${bkg_clr + 30}, 100%, 25%))`;
+  elementAvatar.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, ${saturation}, 95%), hsl(${bkg_clr}, ${saturation}, 50%), hsl(${bkg_clr + 30}, ${saturation}, 5%))`;
+  bkg.style.backgroundImage = `linear-gradient(-225deg, hsl(${bkg_clr - 30}, ${saturation}, 95%), hsl(${bkg_clr}, ${saturation}, 50%), hsl(${bkg_clr + 30}, ${saturation}, 5%))`;
 }
 
 

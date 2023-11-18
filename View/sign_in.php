@@ -65,7 +65,7 @@
             </div>
             <div class="d-input_avatar">
               <button id="prev_bkg">&lt;</button>
-              <span id="bkg">Bkg-clr</span>
+              <button id="bkg">0</button>
               <button id="next_bkg">&gt;</button>
             </div>
 
