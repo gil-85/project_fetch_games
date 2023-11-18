@@ -95,7 +95,8 @@ const checkIfNewEmailAndLognameBeforSingIn = async (formData) => {
       return;
     }
 
-    let avatarAndBkg = avatarSet.textContent + bkg_clr;
+    let color = saturation === `0%` ? 0 : 1;
+    let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
 
     action = 'signing';
 
