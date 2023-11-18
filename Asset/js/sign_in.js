@@ -32,11 +32,6 @@ let logname = ``;
 let password =``;
 let action =  ``;
 const formData = new FormData();
-//const avatarSet = document.querySelector('#avatar>span');
-
-
-
-
 
 
 document.querySelector(`form`).addEventListener(`submit`,(e)=>{
@@ -68,21 +63,20 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 
   action = 'checkEmail';
 
- 
   formData.append('action', action);
   formData.append('email', email);
   formData.append('logname', logname);
   
  if (errorMessage.textContent === '') {
-    checkIfNewEmailBeforSingIn(formData);
+    checkIfNewEmailAndLognameBeforSingIn(formData);
   }  
   return;
 });
 
 
-//// GO TO THE SIGN IN CONTROLLER WITH THE PARAMETERS TO CHECK IF EMAIL DOES NOT ALREADY EXISTS ////
+//// GO TO THE SIGN IN CONTROLLER WITH THE PARAMETERS TO CHECK IF EMAIL OR LOGNAME DOES NOT ALREADY EXISTS ////
  
-const checkIfNewEmailBeforSingIn = async (formData) => {
+const checkIfNewEmailAndLognameBeforSingIn = async (formData) => {
   
   try {
     const res = await fetch('../Controller/users_controller.php', {
@@ -93,13 +87,11 @@ const checkIfNewEmailBeforSingIn = async (formData) => {
     if ( ! res.ok) throw new Error('Network response was not ok');
 
     const data = await res.json();  
-    console.log(data.response.email);
-    console.log(data.response.logname);
 
-    
     if(data.response !== false){
       if(data.response.email === email) errorMessage.textContent = `This email already exists`;
-      else errorMessage.textContent = `This logname already exists`;
+      else if(data.response.logname === logname)  errorMessage.textContent = `This logname already exists`;
+      else errorMessage.textContent = data.response;
       return;
     }
 
@@ -122,7 +114,6 @@ const checkIfNewEmailBeforSingIn = async (formData) => {
 ////  GO TO THE SIGN IN CONTROLLER WITH THE PARAMETERS TO SIGN IN////
 const signIn = async (formData) => {
 
-
   try {
     const res = await fetch('../Controller/users_controller.php', {
       method: 'POST',
@@ -132,23 +123,15 @@ const signIn = async (formData) => {
     if ( ! res.ok) throw new Error('Network response was not ok');
 
 
-     const data = await res.json();  
+    const data = await res.json();  
     console.log(data);
     errorMessage.textContent = data.response; 
  
-  
     //window.location = '../index.php';
   } catch (error) {
     console.error('Error:', error);
   }   
 }
-
-
-
-
-
-
-
 
 
 //// CHECK IF THE EMAIL IS VALID ////
