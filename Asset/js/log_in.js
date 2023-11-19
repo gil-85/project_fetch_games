@@ -10,7 +10,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    password = passwordInput.value;
    errorMessage.textContent = ``;
    
-   action = 'loging';
+   action = 'checklog';
 
    formData.append('action', action);
    formData.append('email', email);
@@ -30,7 +30,7 @@ const checkInputs = async (formData) => {
          method: 'POST',
          body: formData,
       });
-      console.log(res);
+      //console.log(res);
       if ( ! res.ok) throw new Error('Network response was not ok');
 
       const data = await res.json();  
@@ -40,16 +40,45 @@ const checkInputs = async (formData) => {
       if(data.response === false){
          errorMessage.textContent = `No user found`;
          return;
-       }else{
-         if(data.response.email === email){ 
-            errorMessage.textContent = `Log ok`; 
-            console.log(email);
-         }
-         else errorMessage.textContent = data.response; 
-       }
+      }else{
+        if(data.response.email === email){ 
+           errorMessage.textContent = `Log ok`; 
+           console.log(email);
+           action = 'loging';
+           formData.append('action', action);
+           logIng(data.response);
+        }
+        else errorMessage.textContent = data.response; 
+      }
    
    } catch (error) {
       console.error('Error:', error);
    }   
+}
+
+
+const logIng = async (response) => {
+
+   console.log(response.user_id, action);
+
+   formData.append('id', response.user_id);
+
+   try {
+      
+      const res = await fetch('../Controller/users_controller.php', {
+         method: 'POST',
+         body: formData,
+      });
+      //console.log(res);
+      if ( ! res.ok) throw new Error('Network response was not ok');
+
+      const data = await res.json();  
+      console.log(data);
+      errorMessage.textContent = data.response; 
+
+   } catch (error) {
+      console.error('Error:', error);
+   }
+   
 }
 //alert(`log in`);

@@ -26,11 +26,22 @@ function  signIn($email, $logname, $password, $avatar){
 }
 
 
-function  logIn($email, $password){
+function checkInputs($email, $password){
    require_once("dbh.php");
-   $query = "SELECT email, logname, password, avatar FROM users WHERE email = ? AND password = ?;";
+   $query = "SELECT user_id, email, logname, password, avatar FROM users WHERE email = ? AND password = ?;";
    $stmt = $pdo->prepare($query);
    $stmt->execute([$email, $password]);
+   $user = $stmt->fetch(PDO::FETCH_ASSOC);
+   $pdo = null;
+   $stmt = null;
+   return $user;
+}
+
+function loging($id){
+   require_once("dbh.php");
+   $query = "SELECT email, logname, avatar FROM users WHERE user_id = ?;";
+   $stmt = $pdo->prepare($query);
+   $stmt->execute([$id]);
    $user = $stmt->fetch(PDO::FETCH_ASSOC);
    $pdo = null;
    $stmt = null;

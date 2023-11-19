@@ -52,20 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
 
 
-  if ($action === 'loging') {
+  if ($action === 'checklog') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     try{
 
-     
+      $data = array('response' => checkInputs($email, $password));
 
-      $data = array('response' => logIn($email, $password));
-
-     
-      
-
-    
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
     }
@@ -74,10 +68,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
  
 
-    $_SESSION['email'] = $email;
+    //$_SESSION['email'] = $email;
     //$_SESSION['logname'] = $logname;
-    $_SESSION['password'] = $password;
+    //$_SESSION['password'] = $password;
    // $_SESSION['avatar'] = $avatar;
+  }
+
+
+
+  if ($action === 'loging') {
+   
+    $id = $_POST['id'];
+    try{
+
+      $user = logIng($id);
+      $email = $user['email'];
+     $logname = $user['logname'];
+    // $password = $user['password'];  // <---- To remove !!!!!
+      $avatar = $user['avatar'];
+      $data = array('response' => 'log oki');
+
+    }catch(Exception $e){
+      $data = array('response' => 'Error: ' . $e->getMessage());
+    }
+    
+    echo json_encode($data); 
+
+ 
+
+    
+    $_SESSION['email'] = $email;
+    $_SESSION['logname'] = $logname;
+    //$_SESSION['password'] = $password;  // <---- To remove !!!!!
+    $_SESSION['avatar'] = $avatar;
   }
 
 
