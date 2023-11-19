@@ -25,7 +25,9 @@
       isset($indexJs) ? $indexJs : null,
       isset($listJs) ? $listJs : null,
       isset($detailJs) ? $detailJs : null,
+      //isset($userClassJs) ? $userClassJs : null,
       isset($signInJs) ? $signInJs : null,
+      isset($logInJs) ? $logInJs : null,
       isset($researchJs) ? $researchJs : null
   ];
 
@@ -54,7 +56,7 @@
         echo '_logname: ' . $_SESSION['logname'];
         echo '<br> _email: ' . $_SESSION['email'];
         echo '<br> _password: ' . $_SESSION['password'];
-        echo ' _avatar: ' . $_SESSION['avatar'];
+       // echo ' _avatar: ' . $_SESSION['avatar'];
       } else {
         echo 'Not connected';
       }

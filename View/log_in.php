@@ -4,7 +4,7 @@
 
     $mainJs = '../Asset/js/main.js';
     $cryptoJS = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
-    $connexionJs = '../Asset/js/connexion.js';
+    $logInJs = '../Asset/js/log_in.js';
 
     $title = 'LOG IN';
 
@@ -14,6 +14,7 @@
     <h2>Log in</h2>
     <form action="../index.php" id="display_column">
       <input type="email" placeholder="EMAIL" autocomplete="email" required>
+      
       <input type="password" placeholder="PASSWORD" autocomplete="current-password" required>
       <input type="submit" value="ENTER">
     </form>

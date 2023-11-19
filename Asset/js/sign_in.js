@@ -56,10 +56,11 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
     return;
   }
   
-  if(aPassword[0].value !== aPassword[1].value){
+  if(password !== aPassword[1].value){
     errorMessage.textContent= `The passwords don't match`;
     return;
   }
+  
 
   action = 'checkEmail';
 
@@ -95,10 +96,11 @@ const checkIfNewEmailAndLognameBeforSingIn = async (formData) => {
       return;
     }
 
+    action = 'signing';
+    password = CryptoJS.SHA256(password).toString();
+
     let color = saturation === `0%` ? 0 : 1;
     let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
-
-    action = 'signing';
 
     formData.append('action', action);
     formData.append('password', password);
@@ -133,7 +135,6 @@ const signIn = async (formData) => {
     console.error('Error:', error);
   }   
 }
-
 
 //// CHECK IF THE EMAIL IS VALID ////
 const isValidEmail = (email) => {

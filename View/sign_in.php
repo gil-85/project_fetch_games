@@ -4,6 +4,7 @@
 
     $mainJs = '../Asset/js/main.js';
     $cryptoJS = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
+   // $userClassJs = '../Classes/User.class.js';
     $signInJs = '../Asset/js/sign_in.js';
 
     $title = 'SIGN IN';

@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
     $avatar = $_POST['avatar'];
 
     try{
-      signUp($email, $logname, $password, $avatar);
+      signIn($email, $logname, $password, $avatar);
       $data = array('response' => 'oki');
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
@@ -45,6 +45,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
   }
 
 
+
+
+////////////////////////////////////////////////////////////////
+
+
+
+
+  if ($action === 'loging') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    try{
+
+     
+
+      $data = array('response' => logIn($email, $password));
+
+     
+      
+
+    
+    }catch(Exception $e){
+      $data = array('response' => 'Error: ' . $e->getMessage());
+    }
+    
+    echo json_encode($data); 
+
+ 
+
+    $_SESSION['email'] = $email;
+    //$_SESSION['logname'] = $logname;
+    $_SESSION['password'] = $password;
+   // $_SESSION['avatar'] = $avatar;
+  }
 
 
 
