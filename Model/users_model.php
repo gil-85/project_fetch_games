@@ -14,7 +14,6 @@ function checkEmail($email, $logname) {
 } 
    
 
-
 function  signIn($email, $logname, $password, $avatar){
    require_once("dbh.php");
    $query = "INSERT INTO users (email, logname, password, avatar) VALUES (?,?,?,?);";
@@ -26,11 +25,11 @@ function  signIn($email, $logname, $password, $avatar){
 }
 
 
-function checkInputs($email, $password){
+function checkInputs($emailogname, $password){
    require_once("dbh.php");
-   $query = "SELECT user_id, email, logname, password, avatar FROM users WHERE email = ? AND password = ?;";
+   $query = "SELECT * FROM users WHERE email = ? OR logname = ? AND password = ?;";
    $stmt = $pdo->prepare($query);
-   $stmt->execute([$email, $password]);
+   $stmt->execute([$emailogname, $emailogname, $password]);
    $user = $stmt->fetch(PDO::FETCH_ASSOC);
    $pdo = null;
    $stmt = null;
@@ -42,6 +41,18 @@ function loging($id){
    $query = "SELECT email, logname, avatar FROM users WHERE user_id = ?;";
    $stmt = $pdo->prepare($query);
    $stmt->execute([$id]);
+   $user = $stmt->fetch(PDO::FETCH_ASSOC);
+   $pdo = null;
+   $stmt = null;
+   return $user;
+}
+
+
+function logIn($email, $password) {
+   require_once("dbh.php");
+   $query = "SELECT email, logname, password, avatar FROM users WHERE email = ? OR logname = ? AND password = ?;";
+   $stmt = $pdo->prepare($query);
+   $stmt->execute([$email, $logname, $password]); // Repeat $email for the second placeholder
    $user = $stmt->fetch(PDO::FETCH_ASSOC);
    $pdo = null;
    $stmt = null;

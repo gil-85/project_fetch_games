@@ -13,8 +13,7 @@
   <div class="content-primary" id="content">
     <h2>Log in</h2>
     <form action="../index.php" id="display_column">
-      <input type="email" placeholder="EMAIL" autocomplete="email" required>
-      
+      <input type="text" placeholder="EMAIL OR LOGNAME" autocomplete="email" required>
       <input type="password" placeholder="PASSWORD" autocomplete="current-password" required>
       <input type="submit" value="ENTER">
     </form>

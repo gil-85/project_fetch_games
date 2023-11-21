@@ -1,4 +1,4 @@
-const emailInput = document.querySelector(`input[type=email]`);
+const textInput = document.querySelector(`input[type=text]`);
 const passwordInput = document.querySelector(`input[type=password]`);
 const errorMessage = document.querySelector(`#p-error_message`);
 const formData = new FormData();
@@ -6,14 +6,14 @@ const formData = new FormData();
 document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    e.preventDefault();
    
-   email = emailInput.value;
+   emailogname = textInput.value;
    password = passwordInput.value;
    errorMessage.textContent = ``;
    
    action = 'checklog';
 
    formData.append('action', action);
-   formData.append('email', email);
+   formData.append('emailogname', emailogname);  // must add security for text input !!
    formData.append('password', password);
    
     checkInputs(formData);
@@ -38,12 +38,12 @@ const checkInputs = async (formData) => {
 
 
       if(data.response === false){
-         errorMessage.textContent = `No user found`;
+         errorMessage.textContent = `Inputs incorrects`;
          return;
       }else{
-        if(data.response.email === email){ 
+        if(data.response.email === emailogname || data.response.logname === emailogname){ 
            errorMessage.textContent = `Log ok`; 
-           console.log(email);
+           
            action = 'loging';
            formData.append('action', action);
            logIng(data.response);

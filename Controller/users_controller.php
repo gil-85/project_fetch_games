@@ -3,8 +3,8 @@ session_start();
 require_once("../Model/users_model.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
-  $action = $_POST["action"];
 
+  $action = $_POST["action"];
 
   
   if ($action === 'checkEmail') {
@@ -53,12 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
 
   if ($action === 'checklog') {
-    $email = $_POST['email'];
+    $emailogname = $_POST['emailogname'];
     $password = $_POST['password'];
 
     try{
 
-      $data = array('response' => checkInputs($email, $password));
+      $data = array('response' => checkInputs($emailogname, $password));
 
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
@@ -66,12 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
     
     echo json_encode($data); 
 
- 
-
-    //$_SESSION['email'] = $email;
-    //$_SESSION['logname'] = $logname;
-    //$_SESSION['password'] = $password;
-   // $_SESSION['avatar'] = $avatar;
   }
 
 

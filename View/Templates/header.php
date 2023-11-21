@@ -55,8 +55,7 @@
       if (isset($_SESSION['logname'])) {
         echo '_logname: ' . $_SESSION['logname'];
         echo '<br> _email: ' . $_SESSION['email'];
-        echo '<br> _password: ' . $_SESSION['password'];
-       // echo ' _avatar: ' . $_SESSION['avatar'];
+        echo '<br> _avatar: ' . $_SESSION['avatar'];
       } else {
         echo 'Not connected';
       }

@@ -97,7 +97,7 @@ const checkIfNewEmailAndLognameBeforSingIn = async (formData) => {
     }
 
     action = 'signing';
-    password = CryptoJS.SHA256(password).toString();
+   // password = CryptoJS.SHA256(password).toString();
 
     let color = saturation === `0%` ? 0 : 1;
     let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
@@ -127,7 +127,7 @@ const signIn = async (formData) => {
 
 
     const data = await res.json();  
-    console.log(data);
+
     errorMessage.textContent = data.response; 
  
     //window.location = '../index.php';
