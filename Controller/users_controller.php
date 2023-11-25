@@ -7,13 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
   $action = $_POST["action"];
 
   
-  if ($action === 'checkEmail') {
+  if ($action === 'searchIfUserExist') {
   
     $email = $_POST['email'];
     $logname = $_POST['logname'];
 
     try{
-      $data = array('response' => checkEmail($email, $logname));
+      $data = array('response' => searchIfUserExist($email, $logname));
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
     }
@@ -21,26 +21,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
   }
 
-  if ($action === 'signing') {
+  if ($action === 'signIn') {
 
     $email = $_POST['email'];
-
     $logname = $_POST['logname'];
     $password = $_POST['password'];
     $avatar = $_POST['avatar'];
 
     try{
       signIn($email, $logname, $password, $avatar);
-      $data = array('response' => 'oki');
+     // $data = array('response' => 'oki');
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
+      echo json_encode($data); 
     }
 
-    echo json_encode($data); 
 
     $_SESSION['email'] = $email;
     $_SESSION['logname'] = $logname;
-    $_SESSION['password'] = $password;
     $_SESSION['avatar'] = $avatar;
   }
 
@@ -52,13 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
 
 
-  if ($action === 'checklog') {
+  if ($action === 'searchUser') {
     $emailogname = $_POST['emailogname'];
     $password = $_POST['password'];
 
     try{
 
-      $data = array('response' => checkInputs($emailogname, $password));
+      $data = array('response' => searchUser($emailogname, $password));
 
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
@@ -70,30 +68,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
 
 
-  if ($action === 'loging') {
+  if ($action === 'logIn') {
    
     $id = $_POST['id'];
     try{
 
-      $user = logIng($id);
+      $user = logIn($id);
       $email = $user['email'];
-     $logname = $user['logname'];
-    // $password = $user['password'];  // <---- To remove !!!!!
+      $logname = $user['logname'];
       $avatar = $user['avatar'];
-      $data = array('response' => 'log oki');
+     // $data = array('response' => 'log oki');
 
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
+      echo json_encode($data); 
     }
     
-    echo json_encode($data); 
 
  
 
     
     $_SESSION['email'] = $email;
     $_SESSION['logname'] = $logname;
-    //$_SESSION['password'] = $password;  // <---- To remove !!!!!
     $_SESSION['avatar'] = $avatar;
   }
 
@@ -102,5 +98,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 } else {
   die("Wrong path");
 }
-
-//$userExists = getUserByEmail($email);

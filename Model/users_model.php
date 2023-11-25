@@ -1,6 +1,6 @@
 <?php
 
-function checkEmail($email, $logname) {
+function searchIfUserExist($email, $logname) {
    require_once("dbh.php");
   
    $query = "SELECT email, logname FROM users WHERE email = ? OR logname = ?;";
@@ -23,9 +23,9 @@ function  signIn($email, $logname, $password, $avatar){
    $stmt = null;
    return null;
 }
+ 
 
-
-function checkInputs($emailogname, $password){
+function searchUser($emailogname, $password){
    require_once("dbh.php");
    $query = "SELECT * FROM users WHERE email = ? OR logname = ? AND password = ?;";
    $stmt = $pdo->prepare($query);
@@ -36,7 +36,7 @@ function checkInputs($emailogname, $password){
    return $user;
 }
 
-function loging($id){
+function logIn($id){
    require_once("dbh.php");
    $query = "SELECT email, logname, avatar FROM users WHERE user_id = ?;";
    $stmt = $pdo->prepare($query);
@@ -47,7 +47,7 @@ function loging($id){
    return $user;
 }
 
-
+/* 
 function logIn($email, $password) {
    require_once("dbh.php");
    $query = "SELECT email, logname, password, avatar FROM users WHERE email = ? OR logname = ? AND password = ?;";
@@ -58,3 +58,4 @@ function logIn($email, $password) {
    $stmt = null;
    return $user;
 }
+ */

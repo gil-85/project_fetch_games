@@ -9,21 +9,41 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    emailogname = textInput.value;
    password = passwordInput.value;
    errorMessage.textContent = ``;
-   
-   action = 'checklog';
-
-   formData.append('action', action);
-   formData.append('emailogname', emailogname);  // must add security for text input !!
-   formData.append('password', password);
-   
-    checkInputs(formData);
-
-    //alert(`form ok`);
  
+   if( ! isValidEmailogname(emailogname)){
+      errorMessage.textContent= `Email or logname is invalid`;
+    return;
+   } 
 
+    
+   if(errorMessage.textContent === '') {
+     action = 'searchUser';
+     formData.append('action', action);
+     formData.append('emailogname', emailogname);  // must add security for text input !!
+     formData.append('password', password);
+
+     searchUser(formData);
+   }
+   
+   return;
+ 
 });
 
-const checkInputs = async (formData) => {
+
+//// CHECK IF THE EMAIL OR OGNAME IS VALID ////
+const isValidEmailogname = (emailogname) => {
+   const emailognamePattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+   // This pattern allows characters, numbers, dots, underscores, hyphens in email
+   // Change the email part to allow hyphens, underscores, or alphanumeric characters in logname
+   const lognamePattern = /^[a-zA-Z0-9._%+\-]+$/;
+
+   return lognamePattern.test(emailogname) || emailognamePattern.test(emailogname);
+};
+
+
+
+
+const searchUser = async (formData) => {
 
    try {
       const res = await fetch('../Controller/users_controller.php', {
@@ -38,15 +58,14 @@ const checkInputs = async (formData) => {
 
 
       if(data.response === false){
-         errorMessage.textContent = `Inputs incorrects`;
+         errorMessage.textContent = `Wrong email / logname or password`;
          return;
       }else{
         if(data.response.email === emailogname || data.response.logname === emailogname){ 
-           errorMessage.textContent = `Log ok`; 
            
-           action = 'loging';
+           action = 'logIn';
            formData.append('action', action);
-           logIng(data.response);
+           logIn(data.response);
         }
         else errorMessage.textContent = data.response; 
       }
@@ -57,7 +76,7 @@ const checkInputs = async (formData) => {
 }
 
 
-const logIng = async (response) => {
+const logIn = async (response) => {
 
    console.log(response.user_id, action);
 
@@ -72,13 +91,13 @@ const logIng = async (response) => {
       //console.log(res);
       if ( ! res.ok) throw new Error('Network response was not ok');
 
-      const data = await res.json();  
-      console.log(data);
-      errorMessage.textContent = data.response; 
+      //const data = await res.json();  
+   
+     // errorMessage.textContent = data.response; 
 
+     window.location = '../index.php';
    } catch (error) {
       console.error('Error:', error);
    }
    
 }
-//alert(`log in`);

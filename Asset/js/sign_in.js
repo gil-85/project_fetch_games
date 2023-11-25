@@ -40,11 +40,10 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   email = emailInput.value;
   password = aPassword[0].value;
   logname = lognameInput.value;
-
   errorMessage.textContent = ``;
   
   if( ! isValidEmail(email)){
-    errorMessage.textContent= `Email invalid`;
+    errorMessage.textContent= `Email is invalid`;
     return;
   }
   
@@ -62,14 +61,15 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   }
   
 
-  action = 'checkEmail';
-
-  formData.append('action', action);
-  formData.append('email', email);
-  formData.append('logname', logname);
   
- if (errorMessage.textContent === '') {
-    checkIfNewEmailAndLognameBeforSingIn(formData);
+  if (errorMessage.textContent === '') {
+    
+    action = 'searchIfUserExist';
+ 
+    formData.append('action', action);
+    formData.append('email', email);
+    formData.append('logname', logname);
+    searchIfUserExist(formData);
   }  
   return;
 });
@@ -77,7 +77,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 
 //// GO TO THE SIGN IN CONTROLLER WITH THE PARAMETERS TO CHECK IF EMAIL OR LOGNAME DOES NOT ALREADY EXISTS ////
  
-const checkIfNewEmailAndLognameBeforSingIn = async (formData) => {
+const searchIfUserExist = async (formData) => {
   
   try {
     const res = await fetch('../Controller/users_controller.php', {
@@ -96,8 +96,8 @@ const checkIfNewEmailAndLognameBeforSingIn = async (formData) => {
       return;
     }
 
-    action = 'signing';
-   // password = CryptoJS.SHA256(password).toString();
+    action = 'signIn';
+    //password = CryptoJS.SHA256(password).toString();
 
     let color = saturation === `0%` ? 0 : 1;
     let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
@@ -126,11 +126,11 @@ const signIn = async (formData) => {
     if ( ! res.ok) throw new Error('Network response was not ok');
 
 
-    const data = await res.json();  
+   // const data = await res.json();  
 
-    errorMessage.textContent = data.response; 
+    //errorMessage.textContent = data.response; 
  
-    //window.location = '../index.php';
+    window.location = '../index.php';
   } catch (error) {
     console.error('Error:', error);
   }   
