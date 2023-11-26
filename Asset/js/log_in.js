@@ -11,7 +11,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    errorMessage.textContent = ``;
  
    if( ! isValidEmailogname(emailogname)){
-      errorMessage.textContent= `The email or logname is invalid`;
+      errorMessage.textContent= `Wrong email or logname and / or password (TEST NOT OK)`;
     return;
    } 
 
@@ -97,7 +97,7 @@ const logIn = async (response) => {
 const isValidEmailogname = (emailogname) => {
    //const emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-   const lognamePattern = /^[a-zA-Z0-9._%+\-]+$/;
+   const lognamePattern = /^[a-zA-Z0-9_-]{4,16}$/;
 
    return lognamePattern.test(emailogname) || emailPattern.test(emailogname);
 };

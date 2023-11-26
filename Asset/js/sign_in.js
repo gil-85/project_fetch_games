@@ -144,9 +144,9 @@ const isValidEmail = (email) => {
 };
 
 //// CHECK IF THE LOGNAME IS VALID ////
-const isValidLogName = (logName) => {
-  const logNamePattern = /^[a-zA-Z0-9_-]+$/;
-  return logNamePattern.test(logName);
+const isValidLogName = (logname) => {
+  const lognamePattern = /^[a-zA-Z0-9_-]{4,16}$/;
+  return lognamePattern.test(logname);
 };
 
 

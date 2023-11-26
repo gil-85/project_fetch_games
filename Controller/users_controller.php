@@ -28,6 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
     $password = $_POST['password'];
     $avatar = $_POST['avatar'];
 
+    //// INPUT SANITIZATION BEFORE WRITING IN THE DATABASE, THE $AVATAR VALUE DOES NOT COME FROM USERS INPUT ////
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $logname = htmlspecialchars($logname, ENT_QUOTES, 'UTF-8');
+    $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
+
     try{
       signIn($email, $logname, $password, $avatar);
 
@@ -89,10 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
       $data = array('response' => 'Error: ' . $e->getMessage());
       echo json_encode($data); 
     }
-    
-
- 
-
     
     $_SESSION['email'] = $email;
     $_SESSION['logname'] = $logname;
