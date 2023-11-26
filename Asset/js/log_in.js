@@ -11,13 +11,15 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    errorMessage.textContent = ``;
  
    if( ! isValidEmailogname(emailogname)){
-      errorMessage.textContent= `Email or logname is invalid`;
+      errorMessage.textContent= `The email or logname is invalid`;
     return;
    } 
 
     
    if(errorMessage.textContent === '') {
      action = 'searchUser';
+     password = CryptoJS.SHA256(password).toString();
+     console.log(password);
      formData.append('action', action);
      formData.append('emailogname', emailogname);  // must add security for text input !!
      formData.append('password', password);
@@ -28,20 +30,6 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    return;
  
 });
-
-
-//// CHECK IF THE EMAIL OR OGNAME IS VALID ////
-const isValidEmailogname = (emailogname) => {
-   const emailognamePattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
-   // This pattern allows characters, numbers, dots, underscores, hyphens in email
-   // Change the email part to allow hyphens, underscores, or alphanumeric characters in logname
-   const lognamePattern = /^[a-zA-Z0-9._%+\-]+$/;
-
-   return lognamePattern.test(emailogname) || emailognamePattern.test(emailogname);
-};
-
-
-
 
 const searchUser = async (formData) => {
 
@@ -58,7 +46,7 @@ const searchUser = async (formData) => {
 
 
       if(data.response === false){
-         errorMessage.textContent = `Wrong email / logname or password`;
+         errorMessage.textContent = `Wrong email or logname and / or password`;
          return;
       }else{
         if(data.response.email === emailogname || data.response.logname === emailogname){ 
@@ -91,13 +79,28 @@ const logIn = async (response) => {
       //console.log(res);
       if ( ! res.ok) throw new Error('Network response was not ok');
 
+      ////////////////////////////////////////////////////////////////
       //const data = await res.json();  
-   
-     // errorMessage.textContent = data.response; 
+      // errorMessage.textContent = data.response; 
 
-     window.location = '../index.php';
+      window.location = '../index.php';
+///////////////////////////////////////////////////////////////////
+
    } catch (error) {
       console.error('Error:', error);
    }
    
 }
+
+
+//// CHECK IF THE EMAIL OR OGNAME IS VALID ////
+const isValidEmailogname = (emailogname) => {
+   //const emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+   const lognamePattern = /^[a-zA-Z0-9._%+\-]+$/;
+
+   return lognamePattern.test(emailogname) || emailPattern.test(emailogname);
+};
+
+
+

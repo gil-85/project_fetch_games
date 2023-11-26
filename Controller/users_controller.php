@@ -30,7 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
     try{
       signIn($email, $logname, $password, $avatar);
-     // $data = array('response' => 'oki');
+
+      /////////////////////////////////////////
+      $data = array('response' => 'oki');
+      echo json_encode($data); 
+      ///////////////////////////////////////////////
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
       echo json_encode($data); 
@@ -77,8 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
       $email = $user['email'];
       $logname = $user['logname'];
       $avatar = $user['avatar'];
-     // $data = array('response' => 'log oki');
-
+      /////////////////////////////////////////
+      $data = array('response' => 'log oki');
+      echo json_encode($data); 
+          /////////////////////////////////////////
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
       echo json_encode($data); 

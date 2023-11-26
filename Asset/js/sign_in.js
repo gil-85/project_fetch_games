@@ -91,13 +91,13 @@ const searchIfUserExist = async (formData) => {
 
     if(data.response !== false){
       if(data.response.email === email) errorMessage.textContent = `This email already exists`;
-      else if(data.response.logname === logname)  errorMessage.textContent = `This logname already exists`;
+      else if(data.response.logname === logname)  errorMessage.textContent = `This logname is already taken`;
       else errorMessage.textContent = data.response;
       return;
     }
 
     action = 'signIn';
-    //password = CryptoJS.SHA256(password).toString();
+    password = CryptoJS.SHA256(password).toString();
 
     let color = saturation === `0%` ? 0 : 1;
     let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
@@ -125,12 +125,13 @@ const signIn = async (formData) => {
     console.log(res);
     if ( ! res.ok) throw new Error('Network response was not ok');
 
-
-   // const data = await res.json();  
-
-    //errorMessage.textContent = data.response; 
+/////////////////////////////////////////////////////////////
+  //const data = await res.json();  
+  //errorMessage.textContent = data.response; 
  
-    window.location = '../index.php';
+  window.location = '../index.php';
+//////////////////////////////////////////////////////////
+
   } catch (error) {
     console.error('Error:', error);
   }   

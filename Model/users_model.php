@@ -27,7 +27,7 @@ function  signIn($email, $logname, $password, $avatar){
 
 function searchUser($emailogname, $password){
    require_once("dbh.php");
-   $query = "SELECT * FROM users WHERE email = ? OR logname = ? AND password = ?;";
+   $query = "SELECT * FROM users WHERE (email = ? OR logname = ?) AND password = ?;";
    $stmt = $pdo->prepare($query);
    $stmt->execute([$emailogname, $emailogname, $password]);
    $user = $stmt->fetch(PDO::FETCH_ASSOC);

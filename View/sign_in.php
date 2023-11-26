@@ -18,7 +18,7 @@
       <input type="text" placeholder="LOG NAME" autocomplete="username" maxlength="16" name="logname" required>
       <input type="password" placeholder="PASSWORD" autocomplete="new-password" required>
       <input type="password" placeholder="CONFIRM PASSWORD" autocomplete="new-password" required>
-      <button type="button" id="avatar">AVATAR<span>( -_- )</span></button>
+      <button type="button" id="avatar">AVATAR<span class="avatarSet">( -_- )</span></button>
 
       <input type="submit" value="ENTER">
     </form>
