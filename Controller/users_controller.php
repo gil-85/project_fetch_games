@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
     $email = $_POST['email'];
     $logname = $_POST['logname'];
-    $password = $_POST['password'];
     $avatar = $_POST['avatar'];
+    $password = $_POST['password'];
 
     //// INPUT SANITIZATION BEFORE WRITING IN THE DATABASE, THE $AVATAR VALUE DOES NOT COME FROM USERS INPUT ////
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -44,11 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
       $data = array('response' => 'Error: ' . $e->getMessage());
       echo json_encode($data); 
     }
-
-
-    $_SESSION['email'] = $email;
-    $_SESSION['logname'] = $logname;
-    $_SESSION['avatar'] = $avatar;
+ 
+    // $_SESSION['email'] = $email;
+    // $_SESSION['logname'] = $logname;
+    // $_SESSION['avatar'] = $avatar;
   }
 
 
@@ -79,15 +78,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
   if ($action === 'logIn') {
    
-    $id = $_POST['id'];
+    $email = $_POST['email'];
     try{
 
-      $user = logIn($id);
+      $user = logIn($email);
+      $id = $user['user_id'];
       $email = $user['email'];
       $logname = $user['logname'];
       $avatar = $user['avatar'];
       /////////////////////////////////////////
-      $data = array('response' => 'log oki');
+      //$data = array('response' => 'log oki');
       echo json_encode($data); 
           /////////////////////////////////////////
     }catch(Exception $e){
@@ -95,9 +95,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
       echo json_encode($data); 
     }
     
+    $_SESSION['user_id'] = $id;
     $_SESSION['email'] = $email;
     $_SESSION['logname'] = $logname;
     $_SESSION['avatar'] = $avatar;
+  }
+
+
+
+
+
+
+
+
+
+  if($action === 'updateUser') {
+
+    $logname = $_POST['logname'];
+    $avatar = $_POST['avatar'];
+
+
+    try{
+
+      
+      $result = updateUser($logname, $avatar);
+
+
+      if ($result){
+
+        $_SESSION['logname'] = $logname;
+        $_SESSION['avatar'] = $avatar ;  
+      }
+
+      $data = array('response' =>  $result);
+      
+      echo json_encode($data); 
+  
+    
+    }catch(Exception $e){
+      $data = array('response' => 'Error: ' . $e->getMessage());
+      echo json_encode($data); 
+    }
   }
 
 

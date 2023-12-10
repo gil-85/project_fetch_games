@@ -27,7 +27,7 @@ function  signIn($email, $logname, $password, $avatar){
 
 function searchUser($emailogname, $password){
    require_once("dbh.php");
-   $query = "SELECT * FROM users WHERE (email = ? OR logname = ?) AND password = ?;";
+   $query = "SELECT email FROM users WHERE (email = ? OR logname = ?) AND password = ?;";
    $stmt = $pdo->prepare($query);
    $stmt->execute([$emailogname, $emailogname, $password]);
    $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -36,26 +36,47 @@ function searchUser($emailogname, $password){
    return $user;
 }
 
-function logIn($id){
+function logIn($email){
    require_once("dbh.php");
-   $query = "SELECT email, logname, avatar FROM users WHERE user_id = ?;";
+   $query = "SELECT user_id, email, logname, avatar FROM users WHERE email = ?;";
    $stmt = $pdo->prepare($query);
-   $stmt->execute([$id]);
+   $stmt->execute([$email]);
    $user = $stmt->fetch(PDO::FETCH_ASSOC);
    $pdo = null;
    $stmt = null;
    return $user;
 }
 
-/* 
-function logIn($email, $password) {
+
+
+
+
+// function updateUser($logname, $avatar){
+//    require_once("dbh.php");
+//    $id = $_SESSION['user_id'];
+
+//    $query = "UPDATE users SET logname=?, avatar=? WHERE user_id=?";
+//    $stmt = $pdo->prepare($query);
+//    $stmt->execute([$logname, $avatar, $id]);
+//    $pdo = null;
+//    $stmt = null;
+//    return null;
+// }
+
+function updateUser($logname, $avatar) {
    require_once("dbh.php");
-   $query = "SELECT email, logname, password, avatar FROM users WHERE email = ? OR logname = ? AND password = ?;";
+   $id = $_SESSION['user_id'];
+
+   $query = "UPDATE users SET logname=?, avatar=? WHERE user_id=?";
    $stmt = $pdo->prepare($query);
-   $stmt->execute([$email, $logname, $password]); // Repeat $email for the second placeholder
-   $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+   // Check if the query was executed successfully
+   $success = $stmt->execute([$logname, $avatar, $id]);
+
+   // Close the connection and statement
    $pdo = null;
    $stmt = null;
-   return $user;
+
+   // Return success or failure
+   return $success;
 }
- */

@@ -17,27 +17,34 @@ const fetchKey = async (func) => {
 }
 
 //// LINK TO THE HOME PAGE ON THE HEADER TITLE IF NOT ALREADY ON THE HOME PAGE //// 
-if( ! currentURL.includes(`index`))   
-  header.innerHTML =
+if( ! currentURL.includes(`index`))
+  document.querySelector(`#h1_link`).innerHTML =
+  
   `
   <a href="../index.php">
     <h1>Project Games api</h1>
   </a> 
   `;
 
-/*header.innerHTML += 
-`
-<span id="user_email">Not connected </span>
-<br> 
-<span style="font-size: .6em; color:cyan;">user0@gmail.com</span>
-`;
-*/
-//// DISPLAY THE USER INFO IF CONNECTED ////
-if(sessionStorage.getItem(`user_email`)){
-  alert(22);
-  document.querySelector(`#user_email`).textContent = sessionStorage.getItem(`user_email`);
-}
 
+
+  //// BUTTON EDIT USER IF CONNECTED AND NOT ON THE EDIT PAGE////
+  const settingsButton = document.querySelector(`#edit_user`);
+  if (settingsButton) {
+    if( ! currentURL.includes(`update`)){
+      
+      if( ! currentURL.includes(`index`))
+        settingsButton.addEventListener(`click`, () => {
+          window.location = 'update_profil.php';
+        });
+
+      else 
+        settingsButton.addEventListener(`click`, () => {
+          window.location = 'View/update_profil.php';
+        });
+    
+    }else settingsButton.style.display = `none`;
+  }
 
 //// KEEP THE THEME CHOOSED ON EVERY PAGE USING THE LOCALSTORAGE ////
 const theme = localStorage.getItem('theme');

@@ -25,8 +25,9 @@
       isset($indexJs) ? $indexJs : null,
       isset($listJs) ? $listJs : null,
       isset($detailJs) ? $detailJs : null,
-      //isset($userClassJs) ? $userClassJs : null,
+      isset($profilJs) ? $profilJs : null,
       isset($signInJs) ? $signInJs : null,
+      isset($updateProfilJs) ? $updateProfilJs : null,
       isset($logInJs) ? $logInJs : null,
       isset($researchJs) ? $researchJs : null
   ];
@@ -50,12 +51,14 @@
 </head>
 <body>
   <header>
-    <h1>Project Games api</h1>
+    <div id="h1_link"><h1>Project Games api</h1></div>
     <?php
-      if (isset($_SESSION['logname'])) {
-        echo '_logname: ' . $_SESSION['logname'];
-        echo '<br> _email: ' . $_SESSION['email'];
-        echo '<br> _avatar: ' . $_SESSION['avatar'];
+      if (isset($_SESSION['user_id'])) {
+        echo '_id: ' .  $_SESSION['user_id'];
+        echo '&emsp; _email: ' . $_SESSION['email'];
+        echo '&emsp; _logname: ' . $_SESSION['logname'];
+        echo '&emsp;_avatar: <span id="header_avatar">'. $_SESSION['avatar'] . '</span>';
+        echo '&emsp; <button type="button" id="edit_user">Edit</button>';
       } else {
         echo 'Not connected';
       }

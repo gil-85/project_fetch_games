@@ -11,7 +11,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    errorMessage.textContent = ``;
  
    if( ! isValidEmailogname(emailogname)){
-      errorMessage.textContent= `Wrong email or logname and / or password (TEST NOT OK)`;
+      errorMessage.textContent= `Wrong email or logname and / or password (SECURITY TEST NOT OK)`;
     return;
    } 
 
@@ -19,9 +19,8 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    if(errorMessage.textContent === '') {
      action = 'searchUser';
      password = CryptoJS.SHA256(password).toString();
-     console.log(password);
      formData.append('action', action);
-     formData.append('emailogname', emailogname);  // must add security for text input !!
+     formData.append('emailogname', emailogname);
      formData.append('password', password);
 
      searchUser(formData);
@@ -46,17 +45,20 @@ const searchUser = async (formData) => {
 
 
       if(data.response === false){
-         errorMessage.textContent = `Wrong email or logname and / or password`;
+         errorMessage.textContent = `Wrong email or logname and / or password (NO USER FOUND)`;
          return;
       }else{
-        if(data.response.email === emailogname || data.response.logname === emailogname){ 
+       // if(data){// === emailogname || data.response.logname === emailogname){ 
            
            action = 'logIn';
            formData.append('action', action);
-           logIn(data.response);
+           formData.append('email', data.response.email);
+           logIn(formData);
+           console.log(data.response.email);
+          // errorMessage.textContent = data.response.email; ///////
         }
-        else errorMessage.textContent = data.response; 
-      }
+       // else errorMessage.textContent = data.response.email;//`We have a response !!`;//data.response; 
+     // }
    
    } catch (error) {
       console.error('Error:', error);
@@ -64,11 +66,7 @@ const searchUser = async (formData) => {
 }
 
 
-const logIn = async (response) => {
-
-   console.log(response.user_id, action);
-
-   formData.append('id', response.user_id);
+const logIn = async (formData) => {
 
    try {
       
@@ -80,11 +78,9 @@ const logIn = async (response) => {
       if ( ! res.ok) throw new Error('Network response was not ok');
 
       ////////////////////////////////////////////////////////////////
-      //const data = await res.json();  
-      // errorMessage.textContent = data.response; 
-
+    
       window.location = '../index.php';
-///////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////
 
    } catch (error) {
       console.error('Error:', error);
@@ -93,9 +89,8 @@ const logIn = async (response) => {
 }
 
 
-//// CHECK IF THE EMAIL OR OGNAME IS VALID ////
+//// CHECK IF THE EMAIL OR LOGNAME IS VALID ////
 const isValidEmailogname = (emailogname) => {
-   //const emailPattern = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
    const lognamePattern = /^[a-zA-Z0-9_-]{4,16}$/;
 
