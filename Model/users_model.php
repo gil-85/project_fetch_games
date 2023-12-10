@@ -25,9 +25,9 @@ function  signIn($email, $logname, $password, $avatar){
 }
  
 
-function searchUser($emailogname, $password){
+function logIn($emailogname, $password){
    require_once("dbh.php");
-   $query = "SELECT email FROM users WHERE (email = ? OR logname = ?) AND password = ?;";
+   $query = "SELECT user_id, email, logname, avatar FROM users WHERE (email = ? OR logname = ?) AND password = ?;";
    $stmt = $pdo->prepare($query);
    $stmt->execute([$emailogname, $emailogname, $password]);
    $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -36,16 +36,16 @@ function searchUser($emailogname, $password){
    return $user;
 }
 
-function logIn($email){
-   require_once("dbh.php");
-   $query = "SELECT user_id, email, logname, avatar FROM users WHERE email = ?;";
-   $stmt = $pdo->prepare($query);
-   $stmt->execute([$email]);
-   $user = $stmt->fetch(PDO::FETCH_ASSOC);
-   $pdo = null;
-   $stmt = null;
-   return $user;
-}
+// function logIn($email){
+//    require_once("dbh.php");
+//    $query = "SELECT user_id, email, logname, avatar FROM users WHERE email = ?;";
+//    $stmt = $pdo->prepare($query);
+//    $stmt->execute([$email]);
+//    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+//    $pdo = null;
+//    $stmt = null;
+//    return $user;
+// }
 
 
 

@@ -105,9 +105,11 @@ const logIn = async (formData) => {
 
      ////////////////////////////////////////////////////////////////
    
-     window.location = '../index.php';
+    
+      window.location = '../index.php';
      ////////////////////////////////////////////////////////////////
-
+     
+    // window.location = '../index.php';
   } catch (error) {
      console.error('Error:', error);
   }

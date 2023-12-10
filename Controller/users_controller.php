@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
       $result = signIn($email, $logname, $password, $avatar);
 
       /////////////////////////////////////////
-      $data = array('response' =>  $result);
+      $data = array('response' => $result);
       
       echo json_encode($data); 
       ///////////////////////////////////////////////
@@ -52,54 +52,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
   }
 
 
-
-
 ////////////////////////////////////////////////////////////////
 
+  // if ($action === 'searchUser') {
+  //   $emailogname = $_POST['emailogname'];
+  //   $password = $_POST['password'];
 
+  //   try{
 
+  //     $data = array('response' => searchUser($emailogname, $password));
 
-  if ($action === 'searchUser') {
-    $emailogname = $_POST['emailogname'];
-    $password = $_POST['password'];
-
-    try{
-
-      $data = array('response' => searchUser($emailogname, $password));
-
-    }catch(Exception $e){
-      $data = array('response' => 'Error: ' . $e->getMessage());
-    }
+  //   }catch(Exception $e){
+  //     $data = array('response' => 'Error: ' . $e->getMessage());
+  //   }
     
-    echo json_encode($data); 
+  //   echo json_encode($data); 
 
-  }
+  // }
 
 
 
   if ($action === 'logIn') {
+    if(isset($_POST['email'])){
+      $logId = $_POST['email'];
+    }else{
+      $logId = $_POST['emailogname'];
+    }
+    
+    $password = $_POST['password'];
    
-    $email = $_POST['email'];
     try{
 
-      $user = logIn($email);
-      $id = $user['user_id'];
-      $email = $user['email'];
-      $logname = $user['logname'];
-      $avatar = $user['avatar'];
-      /////////////////////////////////////////
-      //$data = array('response' => 'log oki');
+      $user = logIn($logId, $password);
+
+       if($user){
+      
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['logname'] = $user['logname'];
+        $_SESSION['avatar'] = $user['avatar'];
+
+        $data = array('response' => true);
+      }else{
+        $data = array('response' => 'User not find');
+      }
+    
+      
       echo json_encode($data); 
-          /////////////////////////////////////////
+
     }catch(Exception $e){
       $data = array('response' => 'Error: ' . $e->getMessage());
       echo json_encode($data); 
     }
     
-    $_SESSION['user_id'] = $id;
-    $_SESSION['email'] = $email;
-    $_SESSION['logname'] = $logname;
-    $_SESSION['avatar'] = $avatar;
+   
   }
 
 
