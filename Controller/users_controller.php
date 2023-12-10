@@ -34,10 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
     $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
 
     try{
-      signIn($email, $logname, $password, $avatar);
+      $result = signIn($email, $logname, $password, $avatar);
 
       /////////////////////////////////////////
-      $data = array('response' => 'oki');
+      $data = array('response' =>  $result);
+      
       echo json_encode($data); 
       ///////////////////////////////////////////////
     }catch(Exception $e){
@@ -100,13 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
     $_SESSION['logname'] = $logname;
     $_SESSION['avatar'] = $avatar;
   }
-
-
-
-
-
-
-
 
 
   if($action === 'updateUser') {

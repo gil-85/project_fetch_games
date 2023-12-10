@@ -43,7 +43,7 @@ const updateUser = async (formData) => {
  
  /////////////////////////////////////////////////////////////
  const data = await res.json();  
-if(data.response !== true){
+ if(data.response !== true){
   errorMessage.textContent = data.response;
   console.log(data.response);
   return;

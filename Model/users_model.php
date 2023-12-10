@@ -18,10 +18,10 @@ function  signIn($email, $logname, $password, $avatar){
    require_once("dbh.php");
    $query = "INSERT INTO users (email, logname, password, avatar) VALUES (?,?,?,?);";
    $stmt = $pdo->prepare($query);
-   $stmt->execute([$email, $logname, $password, $avatar]);
+   $result = $stmt->execute([$email, $logname, $password, $avatar]);
    $pdo = null;
    $stmt = null;
-   return null;
+   return $result;
 }
  
 
@@ -71,12 +71,12 @@ function updateUser($logname, $avatar) {
    $stmt = $pdo->prepare($query);
 
    // Check if the query was executed successfully
-   $success = $stmt->execute([$logname, $avatar, $id]);
+   $result = $stmt->execute([$logname, $avatar, $id]);
 
    // Close the connection and statement
    $pdo = null;
    $stmt = null;
 
    // Return success or failure
-   return $success;
+   return $result;
 }

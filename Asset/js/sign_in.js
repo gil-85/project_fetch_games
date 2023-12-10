@@ -35,16 +35,142 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
   
   if (errorMessage.textContent === '') {
     
-    action = 'searchIfUserExist';
+   // action = 'searchIfUserExist';
  
     formData.append('action', action);
     formData.append('email', email);
     formData.append('logname', logname);
 
-    searchIfUserExist(formData);
+    
+    action = 'signIn';
+    password = CryptoJS.SHA256(password).toString();
+
+    let color = saturation === `0%` ? 0 : 1;
+    let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
+
+    formData.append('action', action);
+    formData.append('password', password);
+    formData.append('avatar', avatarAndBkg);
+    
+    signIn(formData); 
+
+   // searchIfUserExist(formData);
   }  
   return;
 });
+
+
+
+
+////  GO TO THE CONTROLLER WITH THE PARAMETERS TO SIGN IN ////
+const signIn = async (formData) => {
+
+  try {
+    const res = await fetch('../Controller/users_controller.php', {
+      method: 'POST',
+      body: formData,
+    });
+    //console.log(res);
+    if ( ! res.ok) throw new Error('Network response was not ok');
+
+    const data = await res.json();
+
+    if(data.response !== true){
+      errorMessage.textContent = data.response;
+      console.log(data.response);
+      return;
+    } //else window.location = '../index.php';
+
+     action = 'logIn';
+     formData.append('action', action);
+     logIn(formData);
+
+  } catch (error) {
+    console.error('Error:', error);
+  }   
+}
+
+
+
+const logIn = async (formData) => {
+
+  try {
+     
+     const res = await fetch('../Controller/users_controller.php', {
+        method: 'POST',
+        body: formData,
+     });
+     //console.log(res);
+     if ( ! res.ok) throw new Error('Network response was not ok');
+
+     ////////////////////////////////////////////////////////////////
+   
+     window.location = '../index.php';
+     ////////////////////////////////////////////////////////////////
+
+  } catch (error) {
+     console.error('Error:', error);
+  }
+  
+}
+
+
+
+//// CHECK IF THE EMAIL IS VALID ////
+const isValidEmail = (email) => {
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailPattern.test(email);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //// GO TO THE CONTROLLER WITH THE PARAMETERS TO CHECK IF EMAIL OR LOGNAME DOES NOT ALREADY EXISTS ////
@@ -83,57 +209,4 @@ const searchIfUserExist = async (formData) => {
   } catch (error) {
     console.error('Error:', error);
   }   
-
-} 
-
-////  GO TO THE CONTROLLER WITH THE PARAMETERS TO SIGN IN ////
-const signIn = async (formData) => {
-
-  try {
-    const res = await fetch('../Controller/users_controller.php', {
-      method: 'POST',
-      body: formData,
-    });
-    //console.log(res);
-    if ( ! res.ok) throw new Error('Network response was not ok');
-    
-    action = 'logIn';
-    formData.append('action', action);
-    logIn(formData);
-
-  } catch (error) {
-    console.error('Error:', error);
-  }   
 }
-
-
-
-const logIn = async (formData) => {
-
-  try {
-     
-     const res = await fetch('../Controller/users_controller.php', {
-        method: 'POST',
-        body: formData,
-     });
-     //console.log(res);
-     if ( ! res.ok) throw new Error('Network response was not ok');
-
-     ////////////////////////////////////////////////////////////////
-   
-     window.location = '../index.php';
-     ////////////////////////////////////////////////////////////////
-
-  } catch (error) {
-     console.error('Error:', error);
-  }
-  
-}
-
-
-
-//// CHECK IF THE EMAIL IS VALID ////
-const isValidEmail = (email) => {
-  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  return emailPattern.test(email);
-};
