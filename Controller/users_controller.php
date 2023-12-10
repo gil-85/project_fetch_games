@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
 
         $data = array('response' => true);
       }else{
-        $data = array('response' => 'User not find');
+        $data = array('response' => 'User not found');
       }
     
       
