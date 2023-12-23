@@ -5,7 +5,7 @@
     $mainJs = '../Asset/js/main.js';
     $researchJs = '../Asset/js/research.js';
 
-    $title = 'DETAIL';
+    $title = 'RESEARCH';
 
     include_once('Templates/header.php')
   ?>

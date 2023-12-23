@@ -115,38 +115,38 @@ const isValidEmailogname = (emailogname) => {
 
 
       
-      const searchUser = async (formData) => {
+      // const searchUser = async (formData) => {
       
-         try {
-            const res = await fetch('../Controller/users_controller.php', {
-               method: 'POST',
-               body: formData,
-            });
-            //console.log(res);
-            if ( ! res.ok) throw new Error('Network response was not ok');
+      //    try {
+      //       const res = await fetch('../Controller/users_controller.php', {
+      //          method: 'POST',
+      //          body: formData,
+      //       });
+      //       //console.log(res);
+      //       if ( ! res.ok) throw new Error('Network response was not ok');
       
-            const data = await res.json();  
-            console.log(data);
+      //       const data = await res.json();  
+      //       console.log(data);
       
       
-            if(data.response === false){
-               errorMessage.textContent = `Wrong email or logname and / or password (NO USER FOUND)`;
-               return;
-            }else{
-             // if(data){// === emailogname || data.response.logname === emailogname){ 
+      //       if(data.response === false){
+      //          errorMessage.textContent = `Wrong email or logname and / or password (NO USER FOUND)`;
+      //          return;
+      //       }else{
+      //        // if(data){// === emailogname || data.response.logname === emailogname){ 
                  
-                 action = 'logIn';
-                 formData.append('action', action);
-                 formData.append('email', data.response.email);
-                 logIn(formData);
-                 console.log(data.response.email);
-                // errorMessage.textContent = data.response.email; ///////
-              }
-             // else errorMessage.textContent = data.response.email;//`We have a response !!`;//data.response; 
-           // }
+      //            action = 'logIn';
+      //            formData.append('action', action);
+      //            formData.append('email', data.response.email);
+      //            logIn(formData);
+      //            console.log(data.response.email);
+      //           // errorMessage.textContent = data.response.email; ///////
+      //         }
+      //        // else errorMessage.textContent = data.response.email;//`We have a response !!`;//data.response; 
+      //      // }
          
-         } catch (error) {
-            console.error('Error:', error);
-         }   
-      }
+      //    } catch (error) {
+      //       console.error('Error:', error);
+      //    }   
+      // }
       

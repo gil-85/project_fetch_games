@@ -1,14 +1,14 @@
 //// OPTIONS FOR THE AVATAR ////
-const strSides = `() [] {}`;
+const strSides = `() [] {} ││`;
 const aSides = strSides.split(' ');
 
-const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ๏ ◔`;
+const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ♥ ๏ ◔ ☺ ☻ ▬ ♫ ♦ Ò ◙ * ◘ © ☼ ⌂`;
 const aRightEyes = strRightEyes.split(' ');
 
-const strLeftEyes = `- o T < • ◢ ◣ ° ^ ˇ ♡ ๏ ◔`;
+const strLeftEyes = `- o T < • ◢ ◣ ° ^ ˇ ♡ ♥ ๏ ◔ ☺ ☻ ▬ ♫ ♦ Ò ◙ * ◘ © ☼ ⌂`;
 const aLeftEyes = strLeftEyes.split(' ');
 
-const strMouth = `_ __ . .. ‿ ⎵ ᴥ ︿ ▂ ⌓ ෴`; 
+const strMouth = `_ __ . .. ‿ ⎵ ᴥ ︿ ▂ ⌓ ෴ ∟`; 
 const aMouth = strMouth.split(' ');
 
 const elementAvatar = document.querySelector(`#d-element_avatar`);

@@ -19,7 +19,6 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
    let color = saturation === `0%` ? 0 : 1;
    let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
 
-   //console.log(avatarAndBkg);
    formData.append('action', action);
    formData.append('logname', logname);
    formData.append('avatar', avatarAndBkg);
@@ -44,7 +43,13 @@ const updateUser = async (formData) => {
  /////////////////////////////////////////////////////////////
  const data = await res.json();  
  if(data.response !== true){
-  errorMessage.textContent = data.response;
+   errorMessage.textContent = data.response;
+    //////////////////////
+
+    if(data.response.includes(`1062`) && data.response.includes(`logname`) )
+      errorMessage.textContent = `This logname is already taken`;
+
+      //////////////////////
   console.log(data.response);
   return;
 } else window.location = '../index.php';
