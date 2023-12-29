@@ -2,10 +2,10 @@
 const strSides = `() [] {} ││`;
 const aSides = strSides.split(' ');
 
-const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ♥ ๏ ◔ ☺ ☻ ▬ ♫ ♦ Ò ◙ * ◘ © ☼ ⌂`;
+const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ๏ ◔ ☺ ▬ ♫ Ò * ◘ ☼ ⌂`;
 const aRightEyes = strRightEyes.split(' ');
 
-const strLeftEyes = `- o T < • ◢ ◣ ° ^ ˇ ♡ ♥ ๏ ◔ ☺ ☻ ▬ ♫ ♦ Ò ◙ * ◘ © ☼ ⌂`;
+const strLeftEyes = `- o T < • ◢ ◣ ° ^ ˇ ♡ ๏ ◔ ☺ ▬ ♫ Ò * ◘ ☼ ⌂`;
 const aLeftEyes = strLeftEyes.split(' ');
 
 const strMouth = `_ __ . .. ‿ ⎵ ᴥ ︿ ▂ ⌓ ෴ ∟`; 
