@@ -82,6 +82,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
     }
   }
 
+
+  if($action === 'sendCode'){
+    try {
+      $min = 100000;
+      $max = 999999;
+      $result = mt_rand($min, $max);
+
+      $data = array('response' => $result);
+      echo json_encode($data);
+  } catch (Exception $e) {
+      $data = array('response' => 'Error: ' . $e->getMessage());
+      echo json_encode($data);
+  }
+  }
+
 } else {
   die("Wrong path");
 }

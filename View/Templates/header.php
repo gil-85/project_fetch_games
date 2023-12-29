@@ -51,7 +51,7 @@
 </head>
 <body>
   <header>
-    <div id="h1_link"><h1>Project Games api ☻</h1></div>
+    <div id="h1_link"><h1>Project Games api ☄️</h1></div>
     <?php
       if (isset($_SESSION['user_id'])) {
         echo '_id: ' .  $_SESSION['user_id'];

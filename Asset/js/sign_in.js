@@ -1,10 +1,8 @@
-
 const emailInput = document.querySelector(`input[type=email]`);
 const aPassword = document.querySelectorAll(`input[type=password]`);
 let email = ``;
 let password =``;
 let action =  ``;
-
 
 
 document.querySelector(`form`).addEventListener(`submit`,(e)=>{
@@ -34,28 +32,62 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 
   
   if (errorMessage.textContent === '') {
- 
-    formData.append('action', action);
-    formData.append('email', email);
-    formData.append('logname', logname);
+  //////////////////////////////////////////////////////////////////
 
-    
-    action = 'signIn';
-    password = CryptoJS.SHA256(password).toString();
 
-    let color = saturation === `0%` ? 0 : 1;
-    let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
-
-    formData.append('action', action);
-    formData.append('password', password);
-    formData.append('avatar', avatarAndBkg);
-    
-    signIn(formData); 
+  action = 'sendCode';
+  formData.append('action', action);
+  sendCode(formData);
   }  
   return;
 });
 
+/////////////////////////////////////////////////
 
+////  GO TO THE CONTROLLER WITH THE PARAMETERS TO CREATE A RANDOM CODE  ////
+const sendCode = async (formData) => {
+
+  try {
+    const res = await fetch('../Controller/users_controller.php', {
+      method: 'POST',
+      body: formData,
+    });
+    console.log(res);
+    if ( ! res.ok) throw new Error('Network response was not ok');
+
+    const data = await res.json();
+   
+    console.log(data.response);  // needs to be removed of course :)
+    const code = data.response.toString();
+    console.log(code);
+
+    const typedCode = prompt(`Enter the code plz !!`);
+   
+    if(typedCode === code){
+
+      formData.append('action', action);
+      formData.append('email', email);
+      formData.append('logname', logname);
+  
+      
+      action = 'signIn';
+      password = CryptoJS.SHA256(password).toString();
+  
+      let color = saturation === `0%` ? 0 : 1;
+      let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
+  
+      formData.append('action', action);
+      formData.append('password', password);
+      formData.append('avatar', avatarAndBkg);
+      
+      signIn(formData);   
+    } else alert(`Error : the code doesn't match`);
+
+  } catch (error) {
+    console.error('Error:', error);
+  }   
+}
+///////////////////////////////////////////////
 
 
 ////  GO TO THE CONTROLLER WITH THE PARAMETERS TO SIGN IN ////
