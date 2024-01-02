@@ -37,6 +37,7 @@ document.querySelector(`form`).addEventListener(`submit`,(e)=>{
 
   action = 'sendCode';
   formData.append('action', action);
+  formData.append('email', email);
   sendCode(formData);
   }  
   return;
@@ -52,31 +53,29 @@ const sendCode = async (formData) => {
       method: 'POST',
       body: formData,
     });
-    console.log(res);
+
     if ( ! res.ok) throw new Error('Network response was not ok');
-
+    
     const data = await res.json();
-   
-    console.log(data.response);  // needs to be removed of course :)
-    const code = data.response.toString();
-    console.log(code);
 
-    const typedCode = prompt(`Enter the code plz !!`);
+    //console.log(data.response);  // needs to be removed of course :)
+    if( ! data.response){
+      errorMessage.textContent= `Verification impossible, please try later`;
+      return;
+    } 
+    const code = data.response;
+    const typedCode = prompt(`Enter the code send to ${email}`);
    
     if(typedCode === code){
 
-      formData.append('action', action);
-      formData.append('email', email);
-      formData.append('logname', logname);
-  
-      
       action = 'signIn';
       password = CryptoJS.SHA256(password).toString();
-  
+      
       let color = saturation === `0%` ? 0 : 1;
       let avatarAndBkg = avatarSet.textContent + bkg_clr + '-' + color;
-  
+      
       formData.append('action', action);
+      formData.append('logname', logname);
       formData.append('password', password);
       formData.append('avatar', avatarAndBkg);
       

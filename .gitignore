@@ -1,3 +1,4 @@
 /prod.env.php
-/.hopweb
 /phpinfo.php
+/mailer.php
+/PHPMailer

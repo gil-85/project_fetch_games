@@ -14,10 +14,10 @@
   <div class="content-primary" id="content" exportparts="multipart/form-data">
     <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
-       <input type="email" placeholder="EMAIL" value="user_4@gmail.com" autocomplete="email" required>
+       <input type="email" placeholder="EMAIL" value="duplissy.gil@gmail.com" autocomplete="email" required>
       <?php  include_once('Templates/form.php')?>
-      <input type="password" placeholder="PASSWORD" autocomplete="new-password" required>
-      <input type="password" placeholder="CONFIRM PASSWORD" autocomplete="new-password" required>
+      <input type="password" placeholder="PASSWORD" autocomplete="new-password" value="gilpass" required>
+      <input type="password" placeholder="CONFIRM PASSWORD" autocomplete="new-password" value="gilpass" required>
 
       <input type="submit" value="ENTER">
     </form>
