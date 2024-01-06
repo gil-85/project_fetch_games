@@ -22,12 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["action"])) {
           $mess.= strval($rand);
         }
        
-        $sendCode = sendmail($email, $subject, $mess);
-
-        if($sendCode) $data = array('response' => $mess);
-        else $data = array('response' => false);
+        sendmail($email, $subject, $mess);
+        $data = array('response' => $mess);
         echo json_encode($data);
-  
+
       } catch (Exception $e) {
         $data = array('response' => 'Error: ' . $e->getMessage());
         echo json_encode($data);

@@ -59,10 +59,13 @@ const sendCode = async (formData) => {
     const data = await res.json();
 
     //console.log(data.response);  // needs to be removed of course :)
-    if( ! data.response){
-      errorMessage.textContent= `Verification impossible, please try later`;
-      return;
-    } 
+
+     if(data.response.includes(`Error`)){
+        errorMessage.textContent= `Verification impossible, please try later`;
+        return;
+     } 
+    
+
     const code = data.response;
     const typedCode = prompt(`Enter the code send to ${email}`);
    

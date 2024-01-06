@@ -9,8 +9,8 @@
 
     include_once('Templates/header.php')
   ?>
+  <h2>Research</h2>
   <div class="content-primary" id="content">
-    <h2>Research</h2>
     <form action="list.html" id="display_column">
      
       <input type="text" class="switch" id="name" placeholder="NAME">

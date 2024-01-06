@@ -3,6 +3,7 @@
   --txt-clr_neg: #000;
   --body-bkg: linear-gradient(#000, hsl(210, 50%, 30%), #000); 
   --bkg-clr_00: hsla(210, 50%, 50%, .5);
+  --bkg-clr_01: hsla(280, 50%, 50%, .5);
   --bkg_grd-a_btn: linear-gradient(-90deg, #0000, #888, #0000); 
   --bkg-btn: #000c;
   --bkg-loading: linear-gradient(-90deg, #fff8, #000, #fff8);
@@ -53,6 +54,7 @@ h1{
 }
 
 h2{
+  text-align: center;
   padding: .2em 0em;
   height: 2em;
 }

@@ -22,7 +22,7 @@ const getStrGenres = (params) => { return params.map(each => each.name).join(', 
 
 const getStrParentPlatforms = (params) => { return params.map(each => each.platform.name).join(', '); };
 
-const showArray = (params, name, maxLength = 1000) => {
+const showArray = (params, name, maxLength = 60) => {
     let strParams= ``;
     switch(name){
       case  `tags` : strParams = getStrTags(params); break;
@@ -48,16 +48,19 @@ const loadGames = async () => {
     document.querySelector('h2').innerHTML = `${title} : <small>${data.count}</small>`;
     
     games.forEach(game => {
-    
+      
+      let name = game.name.length < 50 ?  game.name : game.name.substring(0, 50) + `...`;
       let tags = [0];
       let genres = 'Genres unavailable';
       let backgroundImage = `<img src="../Asset/images/alt.png" alt="${game.name} image" class="link-img" id="${game.id}">`;
       let esrb = 'ESRB unavailable';
       let parentPlatforms = 'Parent platforms unavailable';
       let releaseDate = 'Release date unavailable';
+
+      
       
       if(game.tags !== null && game.tags !== undefined && game.tags.length > 0)
-      tags = showArray(game.tags, 'tags');
+        tags = showArray(game.tags, 'tags');
     
       if(game.genres !== null && game.genres !== undefined && game.genres.length > 0)
         genres = showArray(game.genres, 'genres');
@@ -81,25 +84,37 @@ const loadGames = async () => {
       //// CREATE THE ELEMENT TO DISPLAY ////
         item =
         `
-        <div class="item">
-          <h3>${game.name}</h3>
-          <small>${genres}</small>
-          <br>
-          <small>${esrb}</small>
-          <hr>
-          <div>${backgroundImage}</div>
-          <hr>
-          <span> ${parentPlatforms}</span>
-          <br>
-          <span>${releaseDate}</span>
-          <br>
+        <div class="item"> 
+      
+          <div class="item-game_info_1">
+
+            <h3>${name}</h3>
+
+            <div> 
+              <small>${genres}</small>
+              <br>
+              <small>${esrb}</small>
+            </div>
+           
+          </div>
+          
+        
+          <div class="item-bkg_img">
+          ${backgroundImage}
+          </div>
+
+          <div class="item-game_info_2">
+            <span> ${parentPlatforms}</span>
+            <br>
+            <span>${releaseDate}</span>
+            <br>
+          </div>
         </div>
         `;
       content.insertAdjacentHTML(`beforeend`, item);
     }); 
     
     btnLoadMore.parentNode.classList.toggle('ninja', ! nextGameListURL);
-
 
     //// LINK THE IMAGES TO THE DETAILS PAGE ////
     const linkImg = document.querySelectorAll('.link-img');
@@ -125,5 +140,3 @@ btnLoadMore.addEventListener(`click`,()=>{
 
 //// FETCH THE API KEY TO FETCH THE GAMES LIST////
 fetchKey(loadGames);
-
-

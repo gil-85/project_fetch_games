@@ -11,8 +11,8 @@
 
     include_once('Templates/header.php')
   ?>
+  <h2>Sign in</h2>
   <div class="content-primary" id="content" exportparts="multipart/form-data">
-    <h2>Sign in</h2>
     <form action="../index.php" id="display_column">
        <input type="email" placeholder="EMAIL" value="duplissy.gil@gmail.com" autocomplete="email" required>
       <?php  include_once('Templates/form.php')?>

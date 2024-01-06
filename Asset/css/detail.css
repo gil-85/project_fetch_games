@@ -1,18 +1,25 @@
+:root{
+  --side_space: 4em;
+}
+
+#content{
+  margin: 1em var(--side_space);
+  border: .2em solid var(--bkg-clr_00); 
+}
+
 .d-screens-movies{
-  margin: 1em 0;
-  background-color: #00f;
+  margin: 1em var(--side_space);
+  background-color: var(--bkg-clr_00);
 }
 
 .d-screens-movies_item{
   margin-top: 2em;
-  background-color: #f00;
+  background-color: var(--bkg-clr_01);
 }
-
 
 .content-secondary{
   text-align: center;
-  width: 90%;
-  margin: 1em auto;
+  margin: 1em var(--side_space);
   padding: 1em;
   border: .1em solid var(--bkg-clr_00);
   display: flex;
@@ -20,7 +27,6 @@
   flex-wrap: wrap;
   gap: 1em;
 }
-
 
 .d-serie-dlc_item{
   display: flex;
@@ -37,4 +43,10 @@
 
 .d-serie-dlc_item> p{
  background-color: var(--bkg-btn);
+}
+
+@media (max-width: 650px) {
+  :root{
+    --side_space: .4em;
+  }
 }

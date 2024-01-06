@@ -10,8 +10,8 @@
 
     include_once('Templates/header.php')
   ?>
+  <h2>Log in</h2>
   <div class="content-primary" id="content">
-    <h2>Log in</h2>
     <form action="../index.php" id="display_column">
       <input type="text" placeholder="EMAIL OR LOGNAME" autocomplete="email" required>
       <input type="password" placeholder="PASSWORD" autocomplete="current-password" required>

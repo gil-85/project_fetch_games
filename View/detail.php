@@ -9,8 +9,8 @@
     include_once('Templates/header.php')
   ?>
   <div id="loading">LOADING</div>
+  <h2></h2>
   <div class="content-primary" id="content">
-    <h2></h2>
   </div>
   <div class="a-btn">
     <button id="btn-load_more">More content</button>

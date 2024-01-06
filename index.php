@@ -8,8 +8,8 @@
 
     include_once('View/Templates/header.php')
   ?>
+  <h2>Home</h2>
   <div class="content-primary" id="content"> 
-    <h2>Home</h2>
     <nav id="display_column">
       <a href="View/research.php">RESEARCH</a>
       <button id="btn-mode">LIGHT THEME</button> 
