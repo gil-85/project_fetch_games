@@ -17,7 +17,7 @@ const fetchKey = async (func) => {
 }
 
 //// LINK TO THE HOME PAGE ON THE HEADER TITLE IF NOT ALREADY ON THE HOME PAGE //// 
-if( ! currentURL.includes(`index`))
+if(document.querySelector(`h2`).textContent !== `Home`)
   document.querySelector(`#h1_link`).innerHTML =
   
   `

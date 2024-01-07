@@ -120,8 +120,7 @@ const loadGames = async () => {
     const linkImg = document.querySelectorAll('.link-img');
     linkImg.forEach(img => {
       img.addEventListener('click', (e) => {
-        const newWindow = window.open('', '_blank');
-        newWindow.location.href = `detail.php?id=${e.target.id}`;
+        location.href = `detail.php?id=${e.target.id}`;
       });
     });
     

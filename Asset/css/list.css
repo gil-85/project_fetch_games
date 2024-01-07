@@ -19,7 +19,7 @@
   border: .2em solid var(--bkg-clr_00); 
 }
 
-.item-game_info_1{
+#item-game_info_1{
   height: 6.5em;
   margin: 0 .2em 0;
 
@@ -47,9 +47,10 @@
 }
 
 .item-game_info_2{
-  height: 2.5em;
+  font-size: .9em;
+  height: 3.5em;
   margin: 0 .2em 0;
-  padding: .0em;
+  padding: .4em;
   border-top: .1em solid var(--bkg-clr_01); 
 }
 

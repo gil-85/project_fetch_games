@@ -19,13 +19,13 @@ const getStrGenres = (genres) => { return genres.map(each => each.name).join(', 
 
 const getStrPlatforms = (platforms) => { return platforms.map(each => each.platform.name).join(', '); };
 
-const getStrTags = (tags) => { return tags.map(each => each.name + ' ' + ' ____').join(' '); };
+const getStrTags = (tags) => { return tags.map(each => '<small>"' + each.name+ '"</small>' +  ' &nbsp;').join(' '); };
 
 const getStrDevelopers = (developers) => { return developers.map(each => each.name).join(`[-_-]__/`); };
 
 const getScreenshotsStr = (screenshots) => { return screenshots.map(each => `
   <div class="d-screens-movies_item">
-    <img src="${each.image}"  alt="screenshot"></div>`).join('<hr>'); };
+    <img src="${each.image}"  alt="screenshot"></div>`).join(' '); };
 
 const getMoviesStr = (movies) => {
   return movies.map(each =>  `
@@ -35,7 +35,7 @@ const getMoviesStr = (movies) => {
         Your browser does not support the video tag.
     </video>
   <div>
-  ` ).join('<hr>'); };
+  ` ).join(' '); };
   
 const showArray = (params, name, maxLength = 1000) => {
       let strParams= ``;
@@ -107,22 +107,35 @@ const loadGame = async () => {
      //// CREATE THE ELEMENT TO DISPLAY ////
     const item =
     `
-      <div>${backgroundImage}</div>
-      <p>${description}</p>
-      <br> 
-      <small>${genres}</small>
-      <br> <hr>
-      <small>${developers}</small>
-      <br> <hr>
-      <small>${esrb}</small>                      
-      <div>${backgroundImageAdditional}</div>
-      <span>${platforms}</span>
-      <br>
-      <span>${releaseDate}</span>
-        <div>
-          <h3>Tags</h3>
+      <div>
+        ${backgroundImage}
+      </div>
+
+      <div id="description">
+        <p>${description}</p>
+      </div>
+      
+      <div id="item-game_info_1">
+        <small>Genre : ${genres}</small>
+        <small>Developeurs : ${developers}</small>
+        <small>${esrb}</small> 
+      </div>   
+      
+      
+      <div>
+        ${backgroundImageAdditional}
+      </div>
+
+      <div id="item-game_info_2">
+        <div>${platforms}</div>
+        <div>${releaseDate}</div>
+      </div>
+      
+        <div id="item-tags">
+          <p>Tags :</p>
           ${tags}
         </div>
+
       <div class="a-btn">${metacriticUrl}</div>
     `;
 
