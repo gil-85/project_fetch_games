@@ -1,5 +1,5 @@
 //// OPTIONS FOR THE AVATAR ////
-const strSides = `() [] {} ││`;
+const strSides = `() [] {}`;
 const aSides = strSides.split(' ');
 
 const strRightEyes = `- o T > • ◣ ◢ ° ^ ˇ ♡ ๏ ◔ ☺ ▬ ♫ Ò * ◘ ☼ ⌂`;

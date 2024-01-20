@@ -19,7 +19,7 @@ const getStrGenres = (genres) => { return genres.map(each => each.name).join(', 
 
 const getStrPlatforms = (platforms) => { return platforms.map(each => each.platform.name).join(', '); };
 
-const getStrTags = (tags) => { return tags.map(each => '<small>"' + each.name+ '"</small>' +  ' &nbsp;').join(' '); };
+const getStrTags = (tags) => { return tags.map(each => '<small>"' + each.name + '" id: ' + each.id +'</small>' +  ' &nbsp;').join(' '); };
 
 const getStrDevelopers = (developers) => { return developers.map(each => each.name).join(`[-_-]__/`); };
 
@@ -60,8 +60,8 @@ const loadGame = async () => {
     const resDetail = await fetch(urlDetail);
     const dataDetail = await resDetail.json();
     console.log(dataDetail);
-    document.querySelector('h2').textContent = `${dataDetail.name}`;
-    
+    document.querySelector('h2').innerHTML = `${dataDetail.name} &emsp; <button id="fav_${dataDetail.id}"> ♡ ${dataDetail.id} </button>`;
+
     let tags = 'Tags unavailable';
     let backgroundImage = `<img src="../Asset/Images/alt.png" alt="${dataDetail.name} image">`;
     let description = 'Description unavailable'; 
@@ -142,12 +142,35 @@ const loadGame = async () => {
     content.insertAdjacentHTML(`beforeend`, item);
     eventToImgs();
 
+    //// BUTTON TO ADD IN FAVORIES
+    const btnFav= document.querySelector(`#fav_${dataDetail.id}`);
+    btnFav.addEventListener(`click`, e=> {
+      if ( ! settingsButton){
+        console.log(`need 2 b co`);
+        return;
+      } 
+      
+      const formData = new FormData();
+      let action= `add`;
+      formData.append(`action`, action);
+      formData.append(`game_id`, dataDetail.id);
+      console.log(e.target.id);
+      addFav(formData);
+    })
+
+
     loadingElement.classList.add(`ninja`);
    
     }catch(err){
       alert(`ERROR : ${err}`);
    }
 }
+
+
+function addFav(formData){
+  console.log(formData);
+}
+
 
 let pageSreens = 1;
 
@@ -223,6 +246,8 @@ function eventToImgs(){
     });
   });
 }
+
+
 
 //// FETCH THE API KEY TO FETCH THE GAME ////
 fetchKey(loadGame);

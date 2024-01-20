@@ -50,7 +50,7 @@ const loadGames = async () => {
     games.forEach(game => {
       
       let name = game.name.length < 50 ?  game.name : game.name.substring(0, 50) + `...`;
-      let tags = [0];
+      let tags = [];
       let genres = 'Genres unavailable';
       let backgroundImage = `<img src="../Asset/images/alt.png" alt="${game.name} image" class="link-img" id="${game.id}">`;
       let esrb = 'ESRB unavailable';
@@ -79,7 +79,10 @@ const loadGames = async () => {
         
       let item = '';
       //// FILTER NON SUITABLE RESULTS  ////
-      if ( ! tags.some(tag => tag === 50 || tag === 312 || tag === 786)) 
+
+     //if(tags.length=== 0) alert(tags.length);
+     //console.log(game.tags);
+      if ( ! tags.some(tag => tag === 50 || tag === 312 || tag === 786) && tags.length > 0) 
       
       //// CREATE THE ELEMENT TO DISPLAY ////
         item =
